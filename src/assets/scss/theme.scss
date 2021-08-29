@@ -1,0 +1,62 @@
+@import './icons.scss';
+
+// Dark Theme
+@import './bootstrap-dark.scss';
+@import './app-dark.scss';
+
+// Light Theme
+// @import './bootstrap.scss';
+// @import './app.scss';
+
+// RTL Mode
+// @import "./rtl/bootstrap-rtl";
+// @import "./rtl/components-rtl";
+// @import "./rtl/float-rtl";
+// @import "./rtl/general-rtl";
+// @import "./rtl/pages-rtl";
+// @import "./rtl/plugins-rtl";
+// @import "./rtl/spacing-rtl";
+// @import "./rtl/structure-rtl";
+// @import "./rtl/text-rtl";
+
+.react-bootstrap-table-page-btns-ul {
+  margin-bottom: 0px;
+}
+.close {
+  background: transparent;
+  border: 0;
+  font-size: 10px;
+  padding: 1.35rem 1.25rem;
+  background: transparent escape-svg($btn-close-bg-dark) center / $btn-close-width auto no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  width: 1em;
+  height: 1em;
+  z-index: 2;
+  span {
+    display: none;
+  }
+}
+.rangeslider__fill {
+  background-color: #556ee6 !important;
+}
+.rdw-editor-main {
+  border: 1px solid $gray-300;
+  height: 239px;
+}
+.dz-message {
+  text-align: center;
+  margin: 2em 0;
+}
+//Crypto enteries
+.bs-select select {
+  width: auto !important;
+}
+
+.apexcharts-canvas {
+  text {
+    fill: #adb5bd !important;
+  }
+}

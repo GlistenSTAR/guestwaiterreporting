@@ -1,0 +1,18 @@
+// 
+// general-rtl.scss
+//
+
+html {
+    direction: rtl;
+}
+
+body {
+    text-align: right;
+}
+#page-topbar{
+    right: 250px;
+    left: 0;
+}
+.activity-feed .feed-item:after{
+    left: 0px;
+}
