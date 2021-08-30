@@ -75,6 +75,20 @@ const Header = (props) => {
     <React.Fragment>
       <header id="page-topbar">
         <div className="navbar-header">
+          <div className="d-flex justify-content-around align-items-center layout">
+            <p className="text-muted">
+              Today C.A <span className="lead">245.45</span> €
+            </p>
+            <p className="text-muted">
+              Yesterday C.A <span className="lead">347.25</span> €
+            </p>
+            <p className="text-muted">
+              This Month C.A <span className="lead">14,587.41</span> €
+            </p>
+            <p className="text-muted">
+              This Year C.A <span className="lead">74,687.78</span> €
+            </p>
+          </div>
           <div className="d-flex">
             <div className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
@@ -107,12 +121,12 @@ const Header = (props) => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
-            <Form className="app-search d-none d-lg-block">
+            {/* <Form className="app-search d-none d-lg-block">
               <div className="position-relative">
                 <input type="text" className="form-control" placeholder={props.t('Search') + '...'} />
                 <span className="uil-search"></span>
               </div>
-            </Form>
+            </Form> */}
           </div>
 
           <div className="d-flex">

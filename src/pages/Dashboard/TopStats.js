@@ -1,7 +1,10 @@
 import React from 'react';
-import { Row, Col, Card, CardBody, CardTitle } from 'reactstrap';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import CountUp from 'react-countup';
+
+// import { Row, Col, Card, CardBody, CardTitle } from 'reactstrap';
+// import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+
 //Import Breadcrumb
 //import Breadcrumbs from '../../components/Common/Breadcrumb';
 
@@ -12,43 +15,50 @@ const TopStats = () => {
         <div className="card">
           <div className="card-body">
             <div className="float-end mt-2">
-              <div id="total-revenue-chart"></div>
+              <div id="orders-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5>Cash</h5>
-              <h6>
-                <span data-plugin="counterup">270</span> €
-              </h6>
+              <h5 className="mb-0 text-muted">Income Plats</h5>
+              <h5>
+                <span>
+                  <CountUp end={35} separator="," suffix=" €" />
+                </span>
+              </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5>Cheque</h5>
-              <h6>
-                <span data-plugin="counterup">450</span> €
-              </h6>
+              <h5 className="mb-0 text-muted">Average Income Plats</h5>
+              <h5>
+                <span>
+                  <CountUp end={70} separator="," suffix=" €" />
+                </span>
+              </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5>Credit Cart</h5>
-              <h6>
-                <span data-plugin="counterup">650</span> €
-              </h6>
+              <h5 className="mb-0 text-muted">Income By Ticket</h5>
+              <h5>
+                <span>
+                  <CountUp end={65} separator="," suffix=" €" />
+                </span>
+              </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Total</h5>
+              <h5 className="mb-0 text-muted">Total</h5>
               <h4 className="mb-1 mt-1">
-                <span data-plugin="counterup">1370</span> €
+                <span>
+                  <CountUp end={370} separator="," suffix=" €" />
+                </span>
               </h4>
             </div>
-            <p className="mt-3 mb-0">
-              <span className="text-success me-1">
-                {' '}
-                <i className="mdi mdi-arrow-up-bold me-1"></i>24.65%
+
+            <p className="text-muted mt-3 mb-0">
+              <span className="text-danger me-1">
+                <i className="mdi mdi-arrow-down-bold me-1"></i>0.82%
               </span>
               Last 7 days
             </p>
           </div>
         </div>
       </div>
-
       <div className="col-md-6 col-xl-3">
         <div className="card">
           <div className="card-body">
@@ -56,27 +66,35 @@ const TopStats = () => {
               <div id="orders-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Income Plats</h5>
+              <h5 className="mb-0 text-muted">Income Plats N-1</h5>
               <h5>
-                <span data-plugin="counterup">35.27</span> €
+                <span>
+                  <CountUp end={25} separator="," suffix=" €" />
+                </span>
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Average Income Plats</h5>
+              <h5 className="mb-0 text-muted">Average Income Plats N-1</h5>
               <h5>
-                <span data-plugin="counterup">25.55</span> €
+                <span>
+                  <CountUp end={45} separator="," suffix=" €" />
+                </span>
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Income By Ticket</h5>
+              <h5 className="mb-0 text-muted">Income By Ticket N-1</h5>
               <h5>
-                <span data-plugin="counterup">65.75</span> €
+                <span>
+                  <CountUp end={55} separator="," suffix=" €" />
+                </span>
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Total</h5>
+              <h5 className="mb-0 text-muted">Total N-1</h5>
               <h4 className="mb-1 mt-1">
-                <span data-plugin="counterup">370</span> €
+                <span>
+                  <CountUp end={270} separator="," suffix=" €" />
+                </span>
               </h4>
             </div>
 
@@ -131,30 +149,87 @@ const TopStats = () => {
         <div className="card">
           <div className="card-body">
             <div className="float-end mt-2">
+              <div id="total-revenue-chart"></div>
+            </div>
+            <div className="d-flex justify-content-between">
+              <h5 className="text-muted">Cash</h5>
+              <h5>
+                <span>
+                  <CountUp end={270} separator="," suffix=" €" />
+                </span>
+              </h5>
+            </div>
+            <div className="d-flex justify-content-between">
+              <h5 className="text-muted">Cheque</h5>
+              <h5>
+                <span>
+                  <CountUp end={450} separator="," suffix=" €" />
+                </span>
+              </h5>
+            </div>
+            <div className="d-flex justify-content-between">
+              <h5 className="text-muted">Credit Cart</h5>
+              <h5>
+                <span>
+                  <CountUp end={650} separator="," suffix=" €" />
+                </span>
+              </h5>
+            </div>
+            <div className="d-flex justify-content-between">
+              <h5 className="mb-0 text-muted">Total</h5>
+              <h4 className="mb-1 mt-1">
+                <span>
+                  <CountUp end={1370} separator="," suffix=" €" />
+                </span>
+              </h4>
+            </div>
+            <p className="mt-3 mb-0">
+              <span className="text-success me-1">
+                {' '}
+                <i className="mdi mdi-arrow-up-bold me-1"></i>24.65%
+              </span>
+              Last 7 days
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-6 col-xl-3">
+        <div className="card">
+          <div className="card-body">
+            <div className="float-end mt-2">
               <div id="customers-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Gifts Clients</h5>
+              <h5 className="mb-0 text-muted">Gifts Clients</h5>
               <h5>
-                <span data-plugin="counterup">47.86</span> €
+                <span>
+                  <CountUp end={47.4} separator="," suffix=" €" />
+                </span>{' '}
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Direct Sales</h5>
+              <h5 className="mb-0 text-muted">Direct Sales</h5>
               <h5>
-                <span data-plugin="counterup">158.45</span> €
+                <span>
+                  <CountUp end={158} separator="," suffix=" €" />
+                </span>
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Tickets Paid</h5>
+              <h5 className="mb-0 text-muted">Tickets Paid</h5>
               <h5>
-                <span data-plugin="counterup">457.84</span> €
+                <span>
+                  <CountUp end={457} separator="," suffix=" €" />
+                </span>{' '}
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0">Total</h5>
+              <h5 className="mb-0 text-muted">Total</h5>
               <h4 className="mb-1 mt-1">
-                <span data-plugin="counterup">370</span> €
+                <span>
+                  <CountUp end={1370} separator="," suffix=" €" />
+                </span>
               </h4>
             </div>
             <p className="text-muted mt-3 mb-0">
@@ -167,7 +242,7 @@ const TopStats = () => {
         </div>
       </div>
 
-      <div className="col-md-6 col-xl-3">
+      {/* <div className="col-md-6 col-xl-3">
         <div className="card">
           <div className="card-body">
             <div className="float-end mt-2">
@@ -203,7 +278,7 @@ const TopStats = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };

@@ -20,9 +20,6 @@ const MainFilter = () => {
                 <button type="button" className="btn btn-outline-success waves-effect waves-light">
                   This year
                 </button>
-                <button type="button" className="btn btn-outline-success waves-effect waves-light">
-                  Last year
-                </button>
               </div>
             </div>
           </div>

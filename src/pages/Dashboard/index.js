@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import MainFilter from './MainFilter';
 import TopStats from './TopStats';
 import ChartDash from './ChartDash';
+import Weather from './Weather';
 // import MiniWidget from './mini-widget';
 // import SalesAnalyticsChart from './salesanalytics-chart';
 // import TopProduct from './topselling-product';
@@ -259,6 +260,9 @@ const Dashboard = () => {
           </Row>
           <Row>
             <ChartDash />
+          </Row>
+          <Row>
+            <Weather />
           </Row>
           {/* <Row>
             <MiniWidget reports={reports} />
