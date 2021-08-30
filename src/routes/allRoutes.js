@@ -7,7 +7,11 @@ import Chat from '../pages/Chat/Chat';
 // Dashboard
 import Dashboard from '../pages/Dashboard/index';
 
+// Added By Me
 import main from '../pages/Dashboard/main';
+
+// Bande de Controle
+import Controle from '../pages/Controle/Controle';
 
 // Pages Calendar
 import Calendar from '../pages/Calendar/index';
@@ -127,6 +131,9 @@ import UserProfile from '../pages/Authentication/user-profile';
 const userRoutes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/main', component: main },
+
+  { path: '/controle', component: Controle },
+
   { path: '/calendar', component: Calendar },
   //chat
   { path: '/chat', component: Chat },

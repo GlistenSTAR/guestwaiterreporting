@@ -126,7 +126,7 @@ const SidebarContent = (props) => {
             </li>
 
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="controle" className="waves-effect">
                 <i className="uil-sliders-v"></i>
                 <span>{props.t('Bande De Controle')}</span>
               </Link>
