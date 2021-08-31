@@ -1,6 +1,6 @@
-@import "../../assets/scss/theme.scss";
+@import '../../assets/scss/theme.scss';
 
-.radio-toolbar input[type="radio"] {
+.radio-toolbar input[type='radio'] {
   opacity: 0;
   position: fixed;
   width: 0;
@@ -13,7 +13,7 @@
   font-size: 14px;
   border-radius: 4px;
 }
-.radio-toolbar input[type="radio"]:checked + label {
+.radio-toolbar input[type='radio']:checked + label {
   background-color: $primary;
   border: none;
   color: $white;
@@ -21,4 +21,25 @@
 
 #radio-title {
   margin-bottom: 5px;
+}
+
+.search input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid $success;
+  color: aliceblue;
+  width: 250px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.temp h1 {
+  margin: 0 30px;
+  color: white;
+  background-color: rgba(133, 133, 133, 0.164);
+  border-radius: 10px;
+}
+.icon {
+  display: block;
 }
