@@ -5,13 +5,22 @@ import { Redirect } from 'react-router-dom';
 import Chat from '../pages/Chat/Chat';
 
 // Dashboard
-import Dashboard from '../pages/Dashboard/index';
+import Dashboard from '../pages/Dashboard/index_ORIGIN';
 
 // Added By Me
-import main from '../pages/Dashboard/main';
+//import main from '../pages/Dashboard/main';
 
 // Bande de Controle
 import Controle from '../pages/Controle/Controle';
+
+// Report Page
+import Report from '../pages/Report/Report';
+
+// Waiters Page
+import Waiters from '../pages/Waiters/Waiters';
+
+// program Page
+import Program from '../pages/Program/Program';
 
 // Pages Calendar
 import Calendar from '../pages/Calendar/index';
@@ -38,7 +47,7 @@ import InvoicesList from '../pages/Invoices/invoices-list';
 import InvoiceDetail from '../pages/Invoices/invoices-detail';
 
 //Contacts
-import ContactsGrid from '../pages/Contacts/contacts-grid';
+import Users from '../pages/Contacts/Users';
 import ContactsList from '../pages/Contacts/ContactList/contacts-list';
 import ContactsProfile from '../pages/Contacts/ContactsProfile/contacts-profile';
 
@@ -130,9 +139,14 @@ import UserProfile from '../pages/Authentication/user-profile';
 
 const userRoutes = [
   { path: '/dashboard', component: Dashboard },
-  { path: '/main', component: main },
 
   { path: '/controle', component: Controle },
+
+  { path: '/report', component: Report },
+
+  { path: '/waiters', component: Waiters },
+
+  { path: '/program', component: Program },
 
   { path: '/calendar', component: Calendar },
   //chat
@@ -161,8 +175,8 @@ const userRoutes = [
   { path: '/invoices-detail', component: InvoiceDetail },
   { path: '/invoices-detail/:id', component: InvoiceDetail },
 
-  // Contacts
-  { path: '/contacts-grid', component: ContactsGrid },
+  // Users
+  { path: '/users', component: Users },
   { path: '/contacts-list', component: ContactsList },
   { path: '/contacts-profile', component: ContactsProfile },
 

@@ -95,7 +95,7 @@ const SidebarContent = (props) => {
       <SimpleBar style={{ maxHeight: '100%' }} ref={ref} className="sidebar-menu-scroll">
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="text-center">
+            <li className="text-center master-tab">
               <Dropdown
                 isOpen={singlebtn1}
                 toggle={() => setSinglebtn1(!singlebtn1)}
@@ -103,7 +103,7 @@ const SidebarContent = (props) => {
                 styles="borders:none;"
               >
                 <i className="uil-building"></i>
-                <DropdownToggle tag="button" className="btn btn-light" caret>
+                <DropdownToggle tag="button" className="btn btn-light main-rest-tab" caret>
                   Restaurants 1<i className="mdi mdi-chevron-down" />
                 </DropdownToggle>
                 <DropdownMenu>
@@ -132,31 +132,31 @@ const SidebarContent = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="report" className="waves-effect">
                 <i className="fas fa-chart-line"></i>
                 <span>{props.t('Report')}</span>
               </Link>
             </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="waiters" className="waves-effect">
                 <i className="fas fa-users"></i>
                 <span>{props.t('Vendeurs')}</span>
               </Link>
             </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="program" className="waves-effect">
                 <i className="uil-slack"></i>
                 <span>{props.t('Programmation')}</span>
               </Link>
             </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="users" className="waves-effect">
                 <i className="fas fa-laptop-house"></i>
                 <span>{props.t('Comptes')}</span>
               </Link>
             </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="logout" className="waves-effect">
                 <i className="uil-sign-out-alt"></i>
                 <span>{props.t('Déconnexion')}</span>
               </Link>

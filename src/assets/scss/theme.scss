@@ -75,3 +75,15 @@
     color: #ffffff;
   }
 }
+
+.master-tab {
+  .uil-building {
+    color: $success;
+  }
+}
+
+.main-rest-tab {
+  background: transparent;
+  border: 2px solid $success;
+  margin-left: 15px;
+}

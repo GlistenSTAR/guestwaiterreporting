@@ -1,12 +1,11 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
-import { Row, Col, Card, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Row, Col, Card, CardBody } from 'reactstrap';
 
 //Import Breadcrumb
 //import Breadcrumbs from '../../components/Common/Breadcrumb';
 import './datacontrole.scss';
 import BtnExportData from './BtnExportData';
-//import BtnExportData from './BtnExportData';
 
 const DataControle = () => {
   const data = {
@@ -205,22 +204,14 @@ const DataControle = () => {
   };
 
   return (
-    <React.Fragment>
-      <div className="page-content">
-        <div className="container-fluid">
-          <Row>
-            <Col className="col-12">
-              <Card>
-                <CardBody>
-                  <BtnExportData />
-                  <MDBDataTable responsive bordered data={data} />
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </React.Fragment>
+    <Col lg={12}>
+      <Card>
+        <CardBody>
+          <BtnExportData />
+          <MDBDataTable responsive bordered data={data} />
+        </CardBody>
+      </Card>
+    </Col>
   );
 };
 
