@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 
 import MainFilter from './MainFilter';
 import TopStats from './TopStats';
-import ChartDash from './ChartDash';
+import TurnoverChart from './TurnoverChart';
 import Weather from '../Weather/Weather';
 
 const Dashboard = () => {
@@ -18,7 +18,7 @@ const Dashboard = () => {
             <TopStats />
           </Row>
           <Row>
-            <ChartDash />
+            <TurnoverChart />
           </Row>
           <Row>
             <Weather />

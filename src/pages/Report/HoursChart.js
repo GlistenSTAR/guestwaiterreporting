@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, CardBody, Card } from 'reactstrap';
 import ReactApexChart from 'react-apexcharts';
 
-const Hours = () => {
+const HoursChart = () => {
   const series = [
     {
       name: 'Gross Turnover',
@@ -26,7 +26,7 @@ const Hours = () => {
     },
     stroke: {
       curve: 'smooth',
-      width: 4,
+      width: 1,
     },
     // series: [
     //   // {
@@ -103,4 +103,4 @@ const Hours = () => {
   );
 };
 
-export default Hours;
+export default HoursChart;

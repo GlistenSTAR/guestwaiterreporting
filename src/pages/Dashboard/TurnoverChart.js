@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 import CountUp from 'react-countup';
 
-const ChartDash = () => {
+const TurnoverChart = () => {
   const series = [
     {
       name: 'Month Turnover',
@@ -25,7 +25,7 @@ const ChartDash = () => {
     },
     {
       name: 'Plats',
-      type: 'line',
+      type: 'area',
       data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 47],
     },
     {
@@ -51,7 +51,7 @@ const ChartDash = () => {
         columnWidth: '40%',
       },
     },
-    colors: ['#556ee6', '#eeff8b', '#3aff85', '#ff2a4d'],
+    colors: ['#617cff', '#333f7e', '#40f3b1', '#237457'],
 
     fill: {
       opacity: [1, 1, 1, 1],
@@ -169,4 +169,4 @@ const ChartDash = () => {
   );
 };
 
-export default ChartDash;
+export default TurnoverChart;

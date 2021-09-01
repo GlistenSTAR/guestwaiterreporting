@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Chat from '../pages/Chat/Chat';
 
 // Dashboard
-import Dashboard from '../pages/Dashboard/index_ORIGIN';
+import Dashboard from '../pages/Dashboard/index';
 
 // Added By Me
 //import main from '../pages/Dashboard/main';

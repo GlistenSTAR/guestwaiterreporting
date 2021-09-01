@@ -1,23 +1,23 @@
-import React , {useEffect} from "react"
+import React, { useEffect } from 'react';
 // Redux
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
 
-import { Row, Col, CardBody, Card, Container } from "reactstrap"
+import { Row, Col, CardBody, Card, Container } from 'reactstrap';
 
 // availity-reactstrap-validation
-import { AvForm, AvField } from "availity-reactstrap-validation"
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 // import images
 
-import logo from "../../assets/images/logo-dark.png"
-import logolight from "../../assets/images/logo-light.png"
+import logo from '../../assets/images/logo-dark.png';
+import logolight from '../../assets/images/logo-light.png';
 
 const Login = () => {
   useEffect(() => {
-    document.body.className = "authentication-bg";
+    document.body.className = 'authentication-bg';
     // remove classname when component will unmount
     return function cleanup() {
-      document.body.className = "";
+      document.body.className = '';
     };
   });
 
@@ -44,11 +44,10 @@ const Login = () => {
           <Row className="align-items-center justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Card>
-
                 <CardBody className="p-4">
                   <div className="text-center mt-2">
                     <h5 className="text-primary">Welcome Back !</h5>
-                    <p className="text-muted">Sign in to continue to Minible.</p>
+                    <p className="text-muted">Sign in to Guestwaiter Reporting</p>
                   </div>
                   <div className="p-2 mt-4">
                     <AvForm className="form-horizontal">
@@ -66,7 +65,9 @@ const Login = () => {
 
                       <div className="mb-3">
                         <div className="float-end">
-                          <Link to="/page-recoverpw" className="text-muted">Forgot password?</Link>
+                          <Link to="/page-recoverpw" className="text-muted">
+                            Forgot password?
+                          </Link>
                         </div>
                         <AvField
                           name="password"
@@ -79,26 +80,16 @@ const Login = () => {
                       </div>
 
                       <div className="form-check">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          id="customControlInline"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="customControlInline"
-                        >
+                        <input type="checkbox" className="form-check-input" id="customControlInline" />
+                        <label className="form-check-label" htmlFor="customControlInline">
                           Remember me
-                          </label>
+                        </label>
                       </div>
 
                       <div className="mt-3 text-end">
-                        <button
-                          className="btn btn-primary w-sm waves-effect waves-light"
-                          type="submit"
-                        >
+                        <button className="btn btn-primary w-sm waves-effect waves-light" type="submit">
                           Log In
-                          </button>
+                        </button>
                       </div>
 
                       <div className="mt-4 text-center">
@@ -106,26 +97,17 @@ const Login = () => {
 
                         <ul className="list-inline">
                           <li className="list-inline-item">
-                            <Link
-                              to="#"
-                              className="social-list-item bg-primary text-white border-primary"
-                            >
+                            <Link to="#" className="social-list-item bg-primary text-white border-primary">
                               <i className="mdi mdi-facebook" />
                             </Link>
-                          </li>{" "}
+                          </li>{' '}
                           <li className="list-inline-item">
-                            <Link
-                              to="#"
-                              className="social-list-item bg-info text-white border-info"
-                            >
+                            <Link to="#" className="social-list-item bg-info text-white border-info">
                               <i className="mdi mdi-twitter" />
                             </Link>
-                          </li>{" "}
+                          </li>{' '}
                           <li className="list-inline-item">
-                            <Link
-                              to="#"
-                              className="social-list-item bg-danger text-white border-danger"
-                            >
+                            <Link to="#" className="social-list-item bg-danger text-white border-danger">
                               <i className="mdi mdi-google" />
                             </Link>
                           </li>
@@ -133,28 +115,31 @@ const Login = () => {
                       </div>
 
                       <div className="mt-4 text-center">
-                        <p className="mb-0">Don't have an account ? <a href="/pages-register" className="fw-medium text-primary"> Signup now </a> </p>
+                        <p className="mb-0">
+                          Don't have an account ?{' '}
+                          <a href="/pages-register" className="fw-medium text-primary">
+                            {' '}
+                            Signup now{' '}
+                          </a>{' '}
+                        </p>
                       </div>
                     </AvForm>
                   </div>
-
                 </CardBody>
               </Card>
 
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Minible. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                  </p>
+                  © {new Date().getFullYear()} Minible. Crafted with <i className="mdi mdi-heart text-danger" /> by
+                  Themesbrand
+                </p>
               </div>
-
             </Col>
           </Row>
         </Container>
       </div>
-
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -4,7 +4,7 @@ import MainFilter from '../Dashboard/MainFilter';
 
 import Family from './Family';
 import FamilyChart from './FamilyChart';
-import Hours from './Hours';
+import HoursChart from './HoursChart';
 import Payments from './Payments';
 import Statistics from './Statistics';
 import StatisticsTill from './StatisticsTill';
@@ -26,7 +26,7 @@ const Report = () => {
         </Row>
         <Row>
           <Payments />
-          <Hours />
+          <HoursChart />
         </Row>
         <Row>
           <Statistics />
