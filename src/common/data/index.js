@@ -1,19 +1,11 @@
 // import React from "react"
 
-import { calenderDefaultCategories, events } from "./calender"
-import { chats, contacts, groups, messages } from "./chat"
-import {
-  cartData,
-  comments,
-  customerData,
-  discountData,
-  colorData,
-  orders,
-  productsData,
-  shops,
-} from "./ecommerce"
-import { invoiceList } from "./invoices"
-import { users, userProfile } from "./contacts"
+import { calenderDefaultCategories, events } from './calender';
+import { chats, contacts, groups, messages } from './chat';
+import { cartData, comments, customerData, discountData, colorData, orders, productsData, shops } from './ecommerce';
+import { invoiceList } from './invoices';
+import { users, userProfile } from './contacts';
+import { ticketsData } from './tickets';
 
 export {
   events,
@@ -33,4 +25,5 @@ export {
   invoiceList,
   users,
   userProfile,
-}
+  ticketsData,
+};
