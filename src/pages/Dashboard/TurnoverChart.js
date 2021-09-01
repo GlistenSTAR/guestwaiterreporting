@@ -39,7 +39,7 @@ const TurnoverChart = () => {
     chart: {
       stacked: !1,
       toolbar: {
-        show: !1,
+        show: 1,
       },
     },
     stroke: {
@@ -87,7 +87,7 @@ const TurnoverChart = () => {
     },
     yaxis: {
       title: {
-        text: 'Points',
+        text: 'Plats',
       },
     },
     tooltip: {
@@ -160,7 +160,7 @@ const TurnoverChart = () => {
             </div>
 
             <div className="mt-3">
-              <ReactApexChart options={options} series={series} height="339" type="line" className="apex-charts" />
+              <ReactApexChart options={options} series={series} height="440" type="line" />
             </div>
           </CardBody>
         </Card>

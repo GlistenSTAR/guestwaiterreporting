@@ -21,6 +21,12 @@ const HoursChart = () => {
   ];
 
   const options = {
+    chart: {
+      stacked: !1,
+      toolbar: {
+        show: 1,
+      },
+    },
     dataLabels: {
       enabled: !1,
     },
