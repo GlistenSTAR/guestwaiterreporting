@@ -87,3 +87,52 @@
   border: 2px solid $success;
   margin-left: 15px;
 }
+
+.time {
+  color: $success;
+}
+.weather {
+  text-transform: capitalize;
+}
+
+.weather-img img {
+  align-self: center;
+  height: 200px;
+  width: auto;
+}
+.city {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+#radio-title {
+  margin-bottom: 5px;
+}
+
+.search input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid $success;
+  color: aliceblue;
+  width: 250px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.temp h1 {
+  font-weight: 300;
+  margin: 0 30px;
+  background-color: rgba(133, 133, 133, 0.164);
+  border-radius: 10px;
+}
+.icon {
+  display: block;
+}
+
+.hot {
+  color: $warning;
+}
+
+.cold {
+  color: $primary;
+}

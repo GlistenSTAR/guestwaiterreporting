@@ -393,7 +393,7 @@ const SidebarContent = (props) => {
               </ul>
             </li>
 
-            {/* <li>
+            <li>
               <Link to="/#" className="waves-effect">
                 <i className="uil-shutter-alt"></i>
                 <span className="badge rounded-pill bg-info float-end">6</span>
@@ -404,9 +404,7 @@ const SidebarContent = (props) => {
                   <Link to="/basic-elements">{props.t('Basic Elements')}</Link>
                 </li>
                 <li>
-                  <Link to="/form-validation">
-                    {props.t('Form Validation')}
-                  </Link>
+                  <Link to="/form-validation">{props.t('Form Validation')}</Link>
                 </li>
                 <li>
                   <Link to="/form-advanced">{props.t('Form Advanced')}</Link>
@@ -430,7 +428,7 @@ const SidebarContent = (props) => {
                   <Link to="/form-mask">{props.t('Form Mask')}</Link>
                 </li>
               </ul>
-            </li> */}
+            </li>
 
             <li>
               <Link to="/#" className="has-arrow waves-effect">
