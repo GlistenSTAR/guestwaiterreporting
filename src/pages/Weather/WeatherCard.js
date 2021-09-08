@@ -47,7 +47,6 @@ class WeatherCard extends React.Component {
                   alt="Weather Image"
                 />
                 <CardBody>
-                  {/* <Location /> */}
                   <Location />
                   <h6 className="date my-3">{moment(data.dt * 1000).format('ddd Do MMMM YYYY')}</h6>
                   <h5 className="weather mb-3">{data.weather[0].description}</h5>
