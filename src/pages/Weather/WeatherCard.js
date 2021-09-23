@@ -48,8 +48,10 @@ class WeatherCard extends React.Component {
                 />
                 <CardBody>
                   <Location />
-                  <h6 className="date my-3">{moment(data.dt * 1000).format('ddd Do MMMM YYYY')}</h6>
-                  <h5 className="weather mb-3">{data.weather[0].description}</h5>
+                  <h5 className="date my-3">{moment(data.dt * 1000).format('ddd Do MMM YYYY')}</h5>
+                  <div className="weather mb-3">
+                    <h5>{data.weather[0].description}</h5>
+                  </div>
                   <div className="temp text-center">
                     <h1 className={`${temColor > 16 ? 'hot' : 'cold'}`}>
                       {Math.round(data.temp.day)} °C

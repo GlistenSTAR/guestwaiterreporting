@@ -13,7 +13,12 @@ import { Link } from 'react-router-dom';
 //i18n
 import { withTranslation } from 'react-i18next';
 
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 const SidebarContent = (props) => {
   const ref = useRef();
@@ -92,7 +97,11 @@ const SidebarContent = (props) => {
 
   return (
     <React.Fragment>
-      <SimpleBar style={{ maxHeight: '100%' }} ref={ref} className="sidebar-menu-scroll">
+      <SimpleBar
+        style={{ maxHeight: '100%' }}
+        ref={ref}
+        className="sidebar-menu-scroll"
+      >
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="text-center master-tab">
@@ -103,7 +112,11 @@ const SidebarContent = (props) => {
                 styles="borders:none;"
               >
                 <i className="uil-building"></i>
-                <DropdownToggle tag="button" className="btn btn-light main-rest-tab" caret>
+                <DropdownToggle
+                  tag="button"
+                  className="btn btn-light main-rest-tab"
+                  caret
+                >
                   Restaurants 1<i className="mdi mdi-chevron-down" />
                 </DropdownToggle>
                 <DropdownMenu>
@@ -324,7 +337,7 @@ const SidebarContent = (props) => {
 
             <li className="menu-title">{props.t('Components')}</li> */}
 
-            <li>
+            {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-flask"></i>
                 <span>{props.t('UI Elements')}</span>
@@ -518,7 +531,7 @@ const SidebarContent = (props) => {
               </ul>
             </li>
 
-            {/* <li>
+             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-share-alt"></i>
                 <span>{props.t('Multi Level')}</span>

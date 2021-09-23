@@ -20,8 +20,8 @@ class Location extends React.Component {
     );
     await dataLanLong
       .json()
-      .then((data) => this.setState({ city: data.results[4].address_components[0].short_name }))
-      .catch((error) => console.log(error));
+      .then((data) => this.setState({ city: data.results[0].address_components[2].long_name }))
+      .catch((error) => console.log(error))
   };
 
   componentDidMount() {
