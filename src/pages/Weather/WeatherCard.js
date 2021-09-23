@@ -17,7 +17,7 @@ class WeatherCard extends React.Component {
 
   getWeather = async (latitude, longitude) => {
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast/daily?&cnt=6&units=metric&lang=fr&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast/daily?&cnt=6&units=metric&lang=fr&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     );
     await api_call.json().then((data) => {
       this.setState({ fullData: data.list });
@@ -48,7 +48,9 @@ class WeatherCard extends React.Component {
                 />
                 <CardBody>
                   <Location />
-                  <h5 className="date my-3">{moment(data.dt * 1000).format('ddd Do MMM YYYY')}</h5>
+                  <h5 className="date my-3">
+                    {moment(data.dt * 1000).format('ddd Do MMM YYYY')}
+                  </h5>
                   <div className="weather mb-3">
                     <h5>{data.weather[0].description}</h5>
                   </div>
