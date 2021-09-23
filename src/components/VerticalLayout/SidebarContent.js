@@ -337,7 +337,7 @@ const SidebarContent = (props) => {
 
             <li className="menu-title">{props.t('Components')}</li> */}
 
-            {/* <li>
+            <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-flask"></i>
                 <span>{props.t('UI Elements')}</span>
@@ -374,7 +374,9 @@ const SidebarContent = (props) => {
                   <Link to="/ui-rangeslider">{props.t('Range Slider')}</Link>
                 </li>
                 <li>
-                  <Link to="/ui-session-timeout">{props.t('Session Timeout')}</Link>
+                  <Link to="/ui-session-timeout">
+                    {props.t('Session Timeout')}
+                  </Link>
                 </li>
                 <li>
                   <Link to="/ui-progressbars">{props.t('Progress Bars')}</Link>
@@ -383,7 +385,9 @@ const SidebarContent = (props) => {
                   <Link to="/ui-sweet-alert">{props.t('Sweet-Alert')}</Link>
                 </li>
                 <li>
-                  <Link to="/ui-tabs-accordions">{props.t('Tabs & Accordions')}</Link>
+                  <Link to="/ui-tabs-accordions">
+                    {props.t('Tabs & Accordions')}
+                  </Link>
                 </li>
                 <li>
                   <Link to="/ui-typography">{props.t('Typography')}</Link>
@@ -417,7 +421,9 @@ const SidebarContent = (props) => {
                   <Link to="/basic-elements">{props.t('Basic Elements')}</Link>
                 </li>
                 <li>
-                  <Link to="/form-validation">{props.t('Form Validation')}</Link>
+                  <Link to="/form-validation">
+                    {props.t('Form Validation')}
+                  </Link>
                 </li>
                 <li>
                   <Link to="/form-advanced">{props.t('Form Advanced')}</Link>
@@ -456,7 +462,9 @@ const SidebarContent = (props) => {
                   <Link to="/tables-datatable">{props.t('Data Table')}</Link>
                 </li>
                 <li>
-                  <Link to="/tables-responsive">{props.t('Responsive Table')}</Link>
+                  <Link to="/tables-responsive">
+                    {props.t('Responsive Table')}
+                  </Link>
                 </li>
                 <li>
                   <Link to="/tables-editable">{props.t('Editable Table')}</Link>
@@ -484,7 +492,9 @@ const SidebarContent = (props) => {
                   <Link to="/charts-knob">{props.t('Jquery Knob')}</Link>
                 </li>
                 <li>
-                  <Link to="/sparkline-charts">{props.t('Sparkline Chart')}</Link>
+                  <Link to="/sparkline-charts">
+                    {props.t('Sparkline Chart')}
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -502,7 +512,9 @@ const SidebarContent = (props) => {
                   <Link to="/icons-boxicons">{props.t('Boxicons')}</Link>
                 </li>
                 <li>
-                  <Link to="/icons-materialdesign">{props.t('Material Design')}</Link>
+                  <Link to="/icons-materialdesign">
+                    {props.t('Material Design')}
+                  </Link>
                 </li>
                 <li>
                   <Link to="/icons-dripicons">{props.t('Dripicons')}</Link>
@@ -513,7 +525,7 @@ const SidebarContent = (props) => {
               </ul>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-location-point"></i>
                 <span>{props.t('Maps')}</span>

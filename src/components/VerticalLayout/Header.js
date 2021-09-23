@@ -30,7 +30,11 @@ import logoLight from '../../assets/images/logo-light.png';
 import { withTranslation } from 'react-i18next';
 
 // Redux Store
-import { showRightSidebarAction, toggleLeftmenu, changeSidebarType } from '../../store/actions';
+import {
+  showRightSidebarAction,
+  toggleLeftmenu,
+  changeSidebarType,
+} from '../../store/actions';
 
 const Header = (props) => {
   const [search, setsearch] = useState(false);
@@ -50,7 +54,9 @@ const Header = (props) => {
       } else if (document.documentElement.mozRequestFullScreen) {
         document.documentElement.mozRequestFullScreen();
       } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        document.documentElement.webkitRequestFullscreen(
+          Element.ALLOW_KEYBOARD_INPUT
+        );
       }
     } else {
       if (document.cancelFullScreen) {
@@ -76,16 +82,16 @@ const Header = (props) => {
       <header id="page-topbar">
         <div className="navbar-header">
           <div className="d-flex justify-content-around align-items-center layout">
-            <p className="text-muted">
+            <p className="text-muted text-center">
               Today C.A <span className="lead">245.45</span> €
             </p>
-            <p className="text-muted">
+            <p className="text-muted text-center">
               Yesterday C.A <span className="lead">347.25</span> €
             </p>
-            <p className="text-muted">
+            <p className="text-muted text-center">
               This Month C.A <span className="lead">14,587.41</span> €
             </p>
-            <p className="text-muted">
+            <p className="text-muted text-center">
               This Year C.A <span className="lead">74,687.78</span> €
             </p>
           </div>
@@ -251,7 +257,10 @@ const Header = (props) => {
               }}
               className="dropdown d-inline-block"
             >
-              <button type="button" className="btn header-item noti-icon right-bar-toggle waves-effect">
+              <button
+                type="button"
+                className="btn header-item noti-icon right-bar-toggle waves-effect"
+              >
                 <i className="uil-cog"></i>
               </button>
             </div>
@@ -273,7 +282,8 @@ Header.propTypes = {
 };
 
 const mapStatetoProps = (state) => {
-  const { layoutType, showRightSidebar, leftMenu, leftSideBarType } = state.Layout;
+  const { layoutType, showRightSidebar, leftMenu, leftSideBarType } =
+    state.Layout;
   return { layoutType, showRightSidebar, leftMenu, leftSideBarType };
 };
 
