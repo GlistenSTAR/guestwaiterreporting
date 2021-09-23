@@ -1,32 +1,31 @@
-import PropTypes from 'prop-types'
-import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class NonAuthLayout extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
-    this.capitalizeFirstLetter.bind(this)
+    super(props);
+    this.state = {};
+    this.capitalizeFirstLetter.bind(this);
   }
 
-  capitalizeFirstLetter = string => {
-    return string.charAt(1).toUpperCase() + string.slice(2)
-  }
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(1).toUpperCase() + string.slice(2);
+  };
 
   componentDidMount() {
-    let currentage = this.capitalizeFirstLetter(this.props.location.pathname)
+    let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
 
-    document.title =
-      currentage + " | Minible - Responsive Bootstrap 5 Admin Dashboard"
+    document.title = currentage + ' | Guestwaiter';
   }
   render() {
-    return <React.Fragment>{this.props.children}</React.Fragment>
+    return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 }
 
 NonAuthLayout.propTypes = {
   children: PropTypes.any,
-  location: PropTypes.object
-}
+  location: PropTypes.object,
+};
 
-export default withRouter(NonAuthLayout)
+export default withRouter(NonAuthLayout);
