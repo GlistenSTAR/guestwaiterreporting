@@ -1,6 +1,5 @@
 import React from 'react';
 import { InputGroup } from 'reactstrap';
-//Import Flatepicker
 import 'flatpickr/dist/themes/material_blue.css';
 import Flatpickr from 'react-flatpickr';
 
@@ -56,12 +55,6 @@ const MainFilter = () => {
                   }}
                 />
               </InputGroup>
-              {/* <button type="button" className="btn btn-outline-success waves-effect waves-light">
-                Start Date <i className="uil-calendar-alt"></i>
-              </button>
-              <button type="button" className="btn btn-outline-success waves-effect waves-light">
-                End Date <i className="uil-calendar-alt"></i>
-              </button> */}
             </div>
           </div>
         </div>
