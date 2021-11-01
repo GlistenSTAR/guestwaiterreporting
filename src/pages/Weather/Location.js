@@ -10,6 +10,10 @@ class Location extends React.Component {
 
   getPosition = () => {
     return new Promise(function (resolve, reject) {
+      if (navigator.geolocation) {
+        navigator.permissions.query({ name: 'geolocation' });
+      }
+
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
   };
@@ -20,8 +24,14 @@ class Location extends React.Component {
     );
     await dataLanLong
       .json()
-      .then((data) => this.setState({ city: data.results[0].address_components[2].long_name }))
-      .catch((error) => console.log(error))
+      .then(
+        //(data) => console.log(data)
+        (data) =>
+          this.setState({
+            city: data.results[0].address_components[2].long_name,
+          })
+      )
+      .catch((error) => console.log(error));
   };
 
   componentDidMount() {

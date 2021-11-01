@@ -13,25 +13,25 @@ const MainFilter = () => {
               <div className="btn-group">
                 <button
                   type="button"
-                  className="btn btn-outline-success waves-effect waves-light active"
+                  className="custom-btn btn waves-effect waves-light active"
                 >
                   Today
                 </button>
                 <button
                   type="button"
-                  className="btn btn-outline-success waves-effect waves-light"
+                  className="custom-btn btn waves-effect waves-light"
                 >
                   Yesterday
                 </button>
                 <button
                   type="button"
-                  className="btn btn-outline-success waves-effect waves-light"
+                  className="custom-btn btn waves-effect waves-light"
                 >
                   This Month
                 </button>
                 <button
                   type="button"
-                  className="btn btn-outline-success waves-effect waves-light"
+                  className="custom-btn btn waves-effect waves-light"
                 >
                   This year
                 </button>

@@ -1,51 +1,53 @@
-import PropTypes from 'prop-types'
-import React from "react"
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { Switch, BrowserRouter as Router } from "react-router-dom"
-import { connect } from "react-redux"
+import history from './history';
+
+import { listRestaurants } from './store/actions';
+
+import { Switch, BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Import Routes all
-import { userRoutes, authRoutes } from "./routes/allRoutes"
+import { userRoutes, authRoutes } from './routes/allRoutes';
 
 // Import all middleware
-import Authmiddleware from "./routes/middleware/Authmiddleware"
+import Authmiddleware from './routes/middleware/Authmiddleware';
 
 // layouts Format
-import VerticalLayout from "./components/VerticalLayout/"
-import HorizontalLayout from "./components/HorizontalLayout/"
-import NonAuthLayout from "./components/NonAuthLayout"
+import VerticalLayout from './components/VerticalLayout/';
+import HorizontalLayout from './components/HorizontalLayout/';
+import NonAuthLayout from './components/NonAuthLayout';
 
 // Import scss
-import "./assets/scss/theme.scss"
+import './assets/scss/theme.scss';
 
-
-import fakeBackend from "./helpers/AuthType/fakeBackend"
+import fakeBackend from './helpers/AuthType/fakeBackend';
 
 // Activating fake backend
-fakeBackend()
+fakeBackend();
 
-const App = props => {
+const App = (props) => {
   function getLayout() {
-    let layoutCls = VerticalLayout
+    let layoutCls = VerticalLayout;
 
     switch (props.layout.layoutType) {
-      case "horizontal":
-        layoutCls = HorizontalLayout
-        break
+      case 'horizontal':
+        layoutCls = HorizontalLayout;
+        break;
       default:
-        layoutCls = VerticalLayout
-        break
+        layoutCls = VerticalLayout;
+        break;
     }
-    return layoutCls
+    return layoutCls;
   }
 
-  const Layout = getLayout()
+  const Layout = getLayout();
   return (
     <React.Fragment>
-      <Router>
-
+      <Router history={history}>
         <Switch>
-        {authRoutes.map((route, idx) => (
+          {authRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
               layout={NonAuthLayout}
@@ -54,7 +56,7 @@ const App = props => {
               isAuthProtected={false}
             />
           ))}
-          
+
           {userRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
@@ -66,20 +68,19 @@ const App = props => {
             />
           ))}
         </Switch>
-
       </Router>
     </React.Fragment>
-  )
-}
+  );
+};
 
 App.propTypes = {
-  layout: PropTypes.any
-}
+  layout: PropTypes.any,
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     layout: state.Layout,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, null)(App)
+export default connect(mapStateToProps, null)(App);

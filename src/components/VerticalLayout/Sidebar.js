@@ -51,4 +51,7 @@ const mapStatetoProps = (state) => {
     layout: state.Layout,
   };
 };
-export default connect(mapStatetoProps, {})(withRouter(withTranslation()(Sidebar)));
+export default connect(
+  mapStatetoProps,
+  {}
+)(withRouter(withTranslation()(Sidebar)));

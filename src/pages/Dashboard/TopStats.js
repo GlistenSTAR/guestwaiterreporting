@@ -1,16 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import CountUp from 'react-countup';
 
-// import { Row, Col, Card, CardBody, CardTitle } from 'reactstrap';
-// import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+//import { Form } from 'react-bootstrap';
 
-//Import Breadcrumb
-//import Breadcrumbs from '../../components/Common/Breadcrumb';
+// import { useDispatch, useSelector } from 'react-redux';
 
-const TopStats = () => {
+// import { getRestaurantDetails } from '../../store/actions';
+
+//import restaurantDetailsReducer from '../../store/restaurant/reducer';
+
+const TopStats = (props, match, pk) => {
+  // let arr = restaurants.map((rest) => {
+  //   return rest.ticket.map((n) => {
+  //     return n.montant_ttc;
+  //   });
+  // });
+
+  // let sum = 0;
+
+  // for (let num of arr) {
+  //   sum = sum + num;
+  // }
+
+  // console.log(sum);
+
+  // function allSums() {
+  //   if (loading) {
+  //     <p>Loading...</p>;
+  //   }
+  //   if (error) {
+  //     <p>{error}</p>;
+  //   } else {
+  //     const sum = sums[0].map((x, idx) =>
+  //       sums.reduce((sum, curr) => sum + curr[idx], 0)
+  //     );
+  //     return sum;
+  //   }
+  // }
+  // console.log(allSums());
+
   return (
     <React.Fragment>
+      <div className="main-restaurant-div"></div>
+
       <div className="col-md-6 col-xl-3">
         <div className="card">
           <div className="card-body">
@@ -20,8 +53,35 @@ const TopStats = () => {
             <div className="d-flex justify-content-between">
               <h5 className="mb-0 text-muted">Income Plats</h5>
               <h5>
+                {/* {loading ? (
+                  <p>Loading...</p>
+                ) : error ? (
+                  <p>{error}</p>
+                ) : (
+                  restaurants.map((rest) => {
+                    return rest.ticket.map((n) => {
+                      return n.montant_ttc;
+                    });
+                  })
+
+                  // int = sumsArray[0].map((x, idx) =>
+                  //   sumsArray.reduce((sum, curr) => sum + curr[idx], 0)
+                  // );
+                  // console.log(int);
+                )} */}
                 <span>
-                  <CountUp end={35} separator="," suffix=" €" />
+                  {/* {restaurants.map((rest) => {
+                    return rest.ticket.map((n) => {
+                      return (
+                        <CountUp
+                          key={n._id}
+                          decimals={2}
+                          end={n.montant_ttc}
+                          suffix=" €"
+                        />
+                      );
+                    });
+                  })} */}
                 </span>
               </h5>
             </div>

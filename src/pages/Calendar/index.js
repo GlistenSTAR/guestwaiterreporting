@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import {
   Button,
@@ -12,76 +12,75 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap"
-import { AvField, AvForm } from "availity-reactstrap-validation"
+} from 'reactstrap';
+import { AvField, AvForm } from 'availity-reactstrap-validation';
 
-import FullCalendar from "@fullcalendar/react"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction"
-import BootstrapTheme from "@fullcalendar/bootstrap"
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
+import BootstrapTheme from '@fullcalendar/bootstrap';
 
 //Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
+import Breadcrumbs from '../../components/Common/Breadcrumb';
 import {
   addNewEvent,
   deleteEvent,
   getCategories,
   getEvents,
   updateEvent,
-} from "../../store/actions"
-import DeleteModal from "./DeleteModal"
+} from '../../store/actions';
+import DeleteModal from './DeleteModal';
 //css
-import "@fullcalendar/bootstrap/main.css"
-import Commingsoon from "../../assets/images/coming-soon-img.png"
+import '@fullcalendar/bootstrap/main.css';
+import Commingsoon from '../../assets/images/coming-soon-img.png';
 
-const Calender = props => {
-  const { events, categories } = props
-  const [modal, setModal] = useState(false)
-  const [deleteModal, setDeleteModal] = useState(false)
-  const [modalcategory, setModalcategory] = useState(false)
-  const [event, setEvent] = useState({})
-  const [selectedDay, setSelectedDay] = useState(0)
-  const [isEdit, setIsEdit] = useState(false)
+const Calender = (props) => {
+  const { events, categories } = props;
+  const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [modalcategory, setModalcategory] = useState(false);
+  const [event, setEvent] = useState({});
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const { onGetCategories, onGetEvents } = props
+  const { onGetCategories, onGetEvents } = props;
 
   useEffect(() => {
-    
-    onGetCategories()
-    onGetEvents()
-    new Draggable(document.getElementById("external-events"), {
-      itemSelector: ".external-event",
-    })
+    onGetCategories();
+    onGetEvents();
+    new Draggable(document.getElementById('external-events'), {
+      itemSelector: '.external-event',
+    });
   }, [onGetCategories, onGetEvents]);
 
   /**
    * Handling the modal state
    */
   const toggle = () => {
-    setModal(!modal)
+    setModal(!modal);
     setTimeout(() => {
-      setEvent({})
-      setIsEdit(false)
-    }, 500)
-  }
+      setEvent({});
+      setIsEdit(false);
+    }, 500);
+  };
 
   const toggleCategory = () => {
-    setModalcategory(!modalcategory)
-  }
+    setModalcategory(!modalcategory);
+  };
 
   /**
    * Handling date click on calendar
    */
-  const handleDateClick = arg => {
-    setSelectedDay(arg)
-    toggle()
-  }
+  const handleDateClick = (arg) => {
+    setSelectedDay(arg);
+    toggle();
+  };
 
   /**
    * Handling click on event on calendar
    */
-  const handleEventClick = arg => {
-    const event = arg.event
+  const handleEventClick = (arg) => {
+    const event = arg.event;
     setEvent({
       id: event.id,
       title: event.title,
@@ -90,85 +89,84 @@ const Calender = props => {
       className: event.classNames,
       category: event.classNames[0],
       event_category: event.classNames[0],
-    })
-    setIsEdit(true)
-    toggle()
-  }
+    });
+    setIsEdit(true);
+    toggle();
+  };
 
   /**
    * Handling submit event on event form
    */
   const handleValidEventSubmit = (e, values) => {
-    const { onAddNewEvent, onUpdateEvent } = props
+    const { onAddNewEvent, onUpdateEvent } = props;
     if (isEdit) {
       const updateEvent = {
         id: event.id,
         title: values.title,
-        classNames: values.category + " text-white",
+        classNames: values.category + ' text-white',
         start: event.start,
-      }
+      };
       // update event
-      onUpdateEvent(updateEvent)
+      onUpdateEvent(updateEvent);
     } else {
       const newEvent = {
         id: Math.floor(Math.random() * 100),
-        title: values["title"],
+        title: values['title'],
         start: selectedDay ? selectedDay.date : new Date(),
-        className: values.category + " text-white",
-      }
+        className: values.category + ' text-white',
+      };
       // save new event
-      onAddNewEvent(newEvent)
+      onAddNewEvent(newEvent);
     }
-    setSelectedDay(null)
-    toggle()
-  }
+    setSelectedDay(null);
+    toggle();
+  };
 
   const handleValidEventSubmitcategory = (event, values) => {
-    const { onAddNewEvent } = props
-    
+    const { onAddNewEvent } = props;
+
     const newEvent = {
       id: Math.floor(Math.random() * 100),
-      title: values["title_category"],
+      title: values['title_category'],
       start: selectedDay ? selectedDay.date : new Date(),
-      className: values.event_category + " text-white",
-    }
+      className: values.event_category + ' text-white',
+    };
 
-    onAddNewEvent(newEvent)
-    toggleCategory()  
-
-  }
+    onAddNewEvent(newEvent);
+    toggleCategory();
+  };
 
   /**
    * On delete event
    */
   const handleDeleteEvent = () => {
-    const { onDeleteEvent } = props
-    onDeleteEvent(event)
-    setDeleteModal(false)
-    toggle()
-  }
+    const { onDeleteEvent } = props;
+    onDeleteEvent(event);
+    setDeleteModal(false);
+    toggle();
+  };
 
   /**
    * On category darg event
    */
   const onDrag = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   /**
    * On calendar drop event
    */
-  const onDrop = event => {
-    const { onAddNewEvent } = props
-    const draggedEl = event.draggedEl
+  const onDrop = (event) => {
+    const { onAddNewEvent } = props;
+    const draggedEl = event.draggedEl;
     const newEvent = {
       id: Math.floor(Math.random() * 100),
       title: draggedEl.innerText,
       start: event.date,
       className: draggedEl.className,
-    }
-    onAddNewEvent(newEvent)
-  }
+    };
+    onAddNewEvent(newEvent);
+  };
 
   return (
     <React.Fragment>
@@ -194,21 +192,27 @@ const Calender = props => {
                         id="btn-new-event"
                       >
                         <i className="mdi mdi-plus-circle-outline" />
-                                            Create New Event
-                                        </Button>
+                        Create New Event
+                      </Button>
                       <Row className="justify-content-center mt-5">
-                        <img src={Commingsoon} alt="" className="img-fluid d-block" />
+                        <img
+                          src={Commingsoon}
+                          alt=""
+                          className="img-fluid d-block"
+                        />
                       </Row>
                       <div id="external-events" className="m-t-20">
                         <br />
-                        <p className="text-muted">Drag and drop your event or click in the calendar</p>
+                        <p className="text-muted">
+                          Drag and drop your event or click in the calendar
+                        </p>
                         {categories &&
                           categories.map((category, i) => (
                             <div
                               className={`external-event ${category.type} text-white fc-event`}
-                              key={"cat-" + category.id}
+                              key={'cat-' + category.id}
                               draggable
-                              onDrag={event => onDrag(event, category)}
+                              onDrag={(event) => onDrag(event, category)}
                             >
                               <i className="mdi mdi-checkbox-blank-circle font-size-11 me-2" />
                               {category.title}
@@ -216,16 +220,23 @@ const Calender = props => {
                           ))}
                       </div>
 
-                      <ol className="activity-feed mb-0 ps-2 mt-4 ms-1" >
+                      <ol className="activity-feed mb-0 ps-2 mt-4 ms-1">
                         <li className="feed-item">
-                          <p className="mt-0 mb-0">Andrei Coman magna sed porta finibus, risus
-                                                                        posted a new article: Forget UX Rowland</p>
+                          <p className="mt-0 mb-0">
+                            Andrei Coman magna sed porta finibus, risus posted a
+                            new article: Forget UX Rowland
+                          </p>
                         </li>
                         <li className="feed-item">
-                          <p className="mt-0 mb-0">Zack Wetass, sed porta finibus, risus Chris Wallace Commented Developer Moreno</p>
+                          <p className="mt-0 mb-0">
+                            Zack Wetass, sed porta finibus, risus Chris Wallace
+                            Commented Developer Moreno
+                          </p>
                         </li>
                         <li className="feed-item">
-                          <p className="mt-0 mb-0">Zack Wetass, Chris combined Commented UX Murphy</p>
+                          <p className="mt-0 mb-0">
+                            Zack Wetass, Chris combined Commented UX Murphy
+                          </p>
                         </li>
                       </ol>
                     </CardBody>
@@ -241,13 +252,13 @@ const Calender = props => {
                           dayGridPlugin,
                           interactionPlugin,
                         ]}
-                        slotDuration={"00:15:00"}
+                        slotDuration={'00:15:00'}
                         handleWindowResize={true}
                         themeSystem="bootstrap"
                         headerToolbar={{
-                          left: "prev,next today",
-                          center: "title",
-                          right: "dayGridMonth,dayGridWeek,dayGridDay",
+                          left: 'prev,next today',
+                          center: 'title',
+                          right: 'dayGridMonth,dayGridWeek,dayGridDay',
                         }}
                         events={events}
                         editable={true}
@@ -261,7 +272,7 @@ const Calender = props => {
                       {/* New/Edit event modal */}
                       <Modal isOpen={modal} className={props.className}>
                         <ModalHeader toggle={toggle} tag="h4">
-                          {!!isEdit ? "Edit Event" : "Add Event"}
+                          {!!isEdit ? 'Edit Event' : 'Add Event'}
                         </ModalHeader>
                         <ModalBody>
                           <AvForm onValidSubmit={handleValidEventSubmit}>
@@ -276,7 +287,7 @@ const Calender = props => {
                                     validate={{
                                       required: { value: true },
                                     }}
-                                    value={event ? event.title : ""}
+                                    value={event ? event.title : ''}
                                   />
                                 </div>
                               </Col>
@@ -286,7 +297,9 @@ const Calender = props => {
                                     type="select"
                                     name="category"
                                     label="Category"
-                                    value={event ? event.category : "bg-primary"}
+                                    value={
+                                      event ? event.category : 'bg-primary'
+                                    }
                                   >
                                     <option value="bg-danger">Danger</option>
                                     <option value="bg-success">Success</option>
@@ -296,7 +309,6 @@ const Calender = props => {
                                     <option value="bg-warning">Warning</option>
                                   </AvField>
                                 </div>
-
                               </Col>
                             </Row>
                             <Row>
@@ -356,7 +368,7 @@ const Calender = props => {
                                   value={
                                     event.title_category
                                       ? event.title_category
-                                      : ""
+                                      : ''
                                   }
                                 />
                               </Col>
@@ -366,7 +378,7 @@ const Calender = props => {
                                   name="event_category"
                                   label="Choose Category Color"
                                   value={
-                                    event ? event.event_category : "bg-primary"
+                                    event ? event.event_category : 'bg-primary'
                                   }
                                 >
                                   <option value="bg-danger">Danger</option>
@@ -400,7 +412,6 @@ const Calender = props => {
                           </AvForm>
                         </ModalBody>
                       </Modal>
-
                     </CardBody>
                   </Card>
                 </Col>
@@ -410,8 +421,8 @@ const Calender = props => {
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 Calender.propTypes = {
   events: PropTypes.array,
@@ -422,19 +433,19 @@ Calender.propTypes = {
   onUpdateEvent: PropTypes.func,
   onDeleteEvent: PropTypes.func,
   onGetCategories: PropTypes.func,
-}
+};
 
 const mapStateToProps = ({ calendar }) => ({
   events: calendar.events,
   categories: calendar.categories,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onGetEvents: () => dispatch(getEvents()),
   onGetCategories: () => dispatch(getCategories()),
-  onAddNewEvent: event => dispatch(addNewEvent(event)),
-  onUpdateEvent: event => dispatch(updateEvent(event)),
-  onDeleteEvent: event => dispatch(deleteEvent(event)),
-})
+  onAddNewEvent: (event) => dispatch(addNewEvent(event)),
+  onUpdateEvent: (event) => dispatch(updateEvent(event)),
+  onDeleteEvent: (event) => dispatch(deleteEvent(event)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calender)
+export default connect(mapStateToProps, mapDispatchToProps)(Calender);

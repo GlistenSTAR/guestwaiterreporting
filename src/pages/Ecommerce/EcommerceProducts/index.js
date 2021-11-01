@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { Link, withRouter } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -19,32 +19,32 @@ import {
   Collapse,
   Media,
   Row,
-} from "reactstrap"
+} from 'reactstrap';
 
-import { isEmpty, map } from "lodash"
+import { isEmpty, map } from 'lodash';
 
 // RangeSlider
-import Nouislider from "nouislider-react"
-import "nouislider/distribute/nouislider.css"
+import Nouislider from 'nouislider-react';
+import 'nouislider/distribute/nouislider.css';
 
 //Import Breadcrumb
-import Breadcrumbs from "../../../components/Common/Breadcrumb"
+import Breadcrumbs from '../../../components/Common/Breadcrumb';
 
 //Import data
-import { discountData, productsData, colorData } from "../../../common/data"
+import { discountData, productsData, colorData } from '../../../common/data';
 
 //Import actions
-import { getProducts } from "../../../store/e-commerce/actions"
+import { getProducts } from '../../../store/e-commerce/actions';
 
-const EcommerceProducts = props => {
-  const { products, history, onGetProducts } = props
+const EcommerceProducts = (props) => {
+  const { products, history, onGetProducts } = props;
   // eslint-disable-next-line no-unused-vars
   const [FilterClothes, setFilterClothes] = useState([
-    { id: 1, name: "T-shirts", link: "#" },
-    { id: 2, name: "Shirts", link: "#" },
-    { id: 3, name: "Jeans", link: "#" },
-    { id: 4, name: "Jackets", link: "#" },
-  ])
+    { id: 1, name: 'T-shirts', link: '#' },
+    { id: 2, name: 'Shirts', link: '#' },
+    { id: 3, name: 'Jeans', link: '#' },
+    { id: 4, name: 'Jackets', link: '#' },
+  ]);
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -56,39 +56,43 @@ const EcommerceProducts = props => {
 
   const [isFilterProductColorOpen, setIsFilterColorsOpen] = useState(true);
 
-  const filtercolorstoggle = () => setIsFilterColorsOpen(!isFilterProductColorOpen);
+  const filtercolorstoggle = () =>
+    setIsFilterColorsOpen(!isFilterProductColorOpen);
 
   const [isFilterProductRatingOpen, setIsFilterRatingsOpen] = useState(true);
 
-  const filterratingtoggle = () => setIsFilterRatingsOpen(!isFilterProductRatingOpen);
+  const filterratingtoggle = () =>
+    setIsFilterRatingsOpen(!isFilterProductRatingOpen);
 
-  const [isFilterProductDiscountOpen, setIsFilterDiscountOpen] = useState(false);
+  const [isFilterProductDiscountOpen, setIsFilterDiscountOpen] =
+    useState(false);
 
-  const filterdiscountstoggle = () => setIsFilterDiscountOpen(!isFilterProductDiscountOpen);
+  const filterdiscountstoggle = () =>
+    setIsFilterDiscountOpen(!isFilterProductDiscountOpen);
 
-  const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState([]);
 
   // eslint-disable-next-line no-unused-vars
-  const [discountDataList, setDiscountDataList] = useState([])
+  const [discountDataList, setDiscountDataList] = useState([]);
 
   const [filters, setFilters] = useState({
     discount: [],
     color: [],
     price: { min: 0, max: 500 },
-  })
-  const [page, setPage] = useState(1)
+  });
+  const [page, setPage] = useState(1);
   // eslint-disable-next-line no-unused-vars
-  const [totalPage, setTotalPage] = useState(5)
+  const [totalPage, setTotalPage] = useState(5);
 
   useEffect(() => {
-    setProductList(products)
-    onGetProducts()
-    setDiscountDataList(discountData)
-  }, [onGetProducts,products])
+    setProductList(products);
+    onGetProducts();
+    setDiscountDataList(discountData);
+  }, [onGetProducts, products]);
 
   useEffect(() => {
-    if (!isEmpty(products)) setProductList(products)
-  }, [products])
+    if (!isEmpty(products)) setProductList(products);
+  }, [products]);
 
   // const onSelectColor = e => {
   //   const { value } = e.target
@@ -103,65 +107,66 @@ const EcommerceProducts = props => {
   //   setProductList(productsData.filter(product => product.color >= value))
   // }
 
-  const onSelectDiscount = e => {
-    const { value, checked } = e.target
-    const { discount } = filters
+  const onSelectDiscount = (e) => {
+    const { value, checked } = e.target;
+    const { discount } = filters;
     var existing = [...discount];
-    if(checked) {
+    if (checked) {
       existing = [...discount, value];
       setFilters({
         ...filters,
-        discount: existing
-      })
+        discount: existing,
+      });
     } else {
-      const unCheckedItem = discount.find(item => item === value);
-      if(unCheckedItem) {
-        existing = discount.filter(item => item !== value)
+      const unCheckedItem = discount.find((item) => item === value);
+      if (unCheckedItem) {
+        existing = discount.filter((item) => item !== value);
       }
     }
     setFilters({
       ...filters,
-      discount: existing
-    })    
+      discount: existing,
+    });
     // onFilterProducts(value, checked)
 
-    let filteredProducts = productsData
+    let filteredProducts = productsData;
     if (checked && parseInt(value) === 0) {
-      filteredProducts = productsData.filter(product => product.offer < 10)
+      filteredProducts = productsData.filter((product) => product.offer < 10);
     } else if (checked && existing.length > 0) {
       filteredProducts = productsData.filter(
-        product => product.offer >= Math.min(...existing)
-      )
+        (product) => product.offer >= Math.min(...existing)
+      );
     }
-    setProductList(filteredProducts)
-  }
-  
+    setProductList(filteredProducts);
+  };
+
   const onUpdate = (render, handle, value) => {
     setProductList(
       productsData.filter(
-        product => product.newPrice >= value[0] && product.newPrice <= value[1]
+        (product) =>
+          product.newPrice >= value[0] && product.newPrice <= value[1]
       )
-    )
-  }
+    );
+  };
 
   /*
   on change rating checkbox method
   */
-  const onChangeRating = value => {
-    setProductList(productsData.filter(product => product.rating >= value))
-  }
+  const onChangeRating = (value) => {
+    setProductList(productsData.filter((product) => product.rating >= value));
+  };
 
-  const onSelectRating = value => {
-    setProductList(productsData.filter(product => product.rating === value))
-  }
+  const onSelectRating = (value) => {
+    setProductList(productsData.filter((product) => product.rating === value));
+  };
 
   const onUncheckMark = () => {
-    setProductList(productsData)
-  }
+    setProductList(productsData);
+  };
 
-  const handlePageClick = page => {
-    setPage(page)
-  }
+  const handlePageClick = (page) => {
+    setPage(page);
+  };
 
   return (
     <React.Fragment>
@@ -177,15 +182,47 @@ const EcommerceProducts = props => {
                 <div className="p-4">
                   <h5 className="font-size-14 mb-3">Categories</h5>
                   <div className="custom-accordion">
-                    <Link to="#" className="text-body fw-semibold pb-2 d-block" onClick={toggle}><i className="mdi mdi-chevron-up accor-down-icon text-primary me-1"></i> Footwear</Link>
+                    <Link
+                      to="#"
+                      className="text-body fw-semibold pb-2 d-block"
+                      onClick={toggle}
+                    >
+                      <i className="mdi mdi-chevron-up accor-down-icon text-primary me-1"></i>{' '}
+                      Footwear
+                    </Link>
                     <Collapse isOpen={isOpen}>
                       <div className="card p-2 border shadow-none">
                         <ul className="list-unstyled categories-list mb-0">
-                          <li><Link to="#"><i className="mdi mdi-circle-medium me-1"></i> Formal Shoes</Link></li>
-                          <li className="active"><Link to="#"><i className="mdi mdi-circle-medium me-1"></i> Sports Shoes</Link></li>
-                          <li><Link to="#"><i className="mdi mdi-circle-medium me-1"></i> Casual Shoes</Link></li>
-                          <li><Link to="#"><i className="mdi mdi-circle-medium me-1"></i> Sandals</Link></li>
-                          <li><Link to="#"><i className="mdi mdi-circle-medium me-1"></i> Slippers</Link></li>
+                          <li>
+                            <Link to="#">
+                              <i className="mdi mdi-circle-medium me-1"></i>{' '}
+                              Formal Shoes
+                            </Link>
+                          </li>
+                          <li className="active">
+                            <Link to="#">
+                              <i className="mdi mdi-circle-medium me-1"></i>{' '}
+                              Sports Shoes
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <i className="mdi mdi-circle-medium me-1"></i>{' '}
+                              Casual Shoes
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <i className="mdi mdi-circle-medium me-1"></i>{' '}
+                              Sandals
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <i className="mdi mdi-circle-medium me-1"></i>{' '}
+                              Slippers
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                     </Collapse>
@@ -207,12 +244,23 @@ const EcommerceProducts = props => {
                 <div className="custom-accordion">
                   <div className="p-4 border-top">
                     <div>
-                      <h5 className="font-size-14 mb-0"><Link to="#" onClick={filtersizestoggle} className="text-dark d-block" >Sizes <i className="mdi mdi-chevron-up float-end accor-down-icon"></i></Link></h5>
+                      <h5 className="font-size-14 mb-0">
+                        <Link
+                          to="#"
+                          onClick={filtersizestoggle}
+                          className="text-dark d-block"
+                        >
+                          Sizes{' '}
+                          <i className="mdi mdi-chevron-up float-end accor-down-icon"></i>
+                        </Link>
+                      </h5>
                       <Collapse isOpen={isFilterSizesOpen}>
                         <div className="mt-4">
                           <Media className="d-flex align-items-center">
                             <div className="flex-1">
-                              <h5 className="font-size-15 mb-0">Select Sizes</h5>
+                              <h5 className="font-size-15 mb-0">
+                                Select Sizes
+                              </h5>
                             </div>
                             <div className="w-xs">
                               <Input type="select" className="form-select">
@@ -235,14 +283,24 @@ const EcommerceProducts = props => {
                   <div className="p-4 border-top">
                     <div>
                       <h5 className="font-size-14 mb-0">
-                        <Link to="#" onClick={filtercolorstoggle} className="text-dark d-block" >Colors <i className="mdi mdi-chevron-up float-end accor-down-icon"></i></Link>
+                        <Link
+                          to="#"
+                          onClick={filtercolorstoggle}
+                          className="text-dark d-block"
+                        >
+                          Colors{' '}
+                          <i className="mdi mdi-chevron-up float-end accor-down-icon"></i>
+                        </Link>
                       </h5>
-                      <Collapse isOpen={isFilterProductColorOpen} id="filterproductcolor-collapse">
+                      <Collapse
+                        isOpen={isFilterProductColorOpen}
+                        id="filterproductcolor-collapse"
+                      >
                         <div className="mt-4">
                           {colorData.map((color, i) => (
                             <div
                               className="form-check mt-2"
-                              key={"_colorfilter_" + i}
+                              key={'_colorfilter_' + i}
                             >
                               <Input
                                 type="checkbox"
@@ -250,7 +308,10 @@ const EcommerceProducts = props => {
                                 className="form-check-input"
                                 id={i + 'color'}
                               />
-                              <Label className="form-check-label" htmlFor={i + 'color'}>
+                              <Label
+                                className="form-check-label"
+                                htmlFor={i + 'color'}
+                              >
                                 {color.label}
                               </Label>
                             </div>
@@ -263,20 +324,30 @@ const EcommerceProducts = props => {
                   <div className="p-4 border-top">
                     <div>
                       <h5 className="font-size-14 mb-0">
-                        <Link to="#" onClick={filterratingtoggle} className="text-dark d-block" >Customer Rating <i className="mdi mdi-chevron-up float-end accor-down-icon"></i></Link>
+                        <Link
+                          to="#"
+                          onClick={filterratingtoggle}
+                          className="text-dark d-block"
+                        >
+                          Customer Rating{' '}
+                          <i className="mdi mdi-chevron-up float-end accor-down-icon"></i>
+                        </Link>
                       </h5>
-                      <Collapse isOpen={isFilterProductRatingOpen} id="filterprodductcolor-collapse">
+                      <Collapse
+                        isOpen={isFilterProductRatingOpen}
+                        id="filterprodductcolor-collapse"
+                      >
                         <div className="mt-4">
                           <div className="form-check mt-2">
                             <Input
                               type="checkbox"
                               className="form-check-input"
                               id="productratingCheck1"
-                              onChange={e => {
+                              onChange={(e) => {
                                 if (e.target.checked) {
-                                  onChangeRating(4)
+                                  onChangeRating(4);
                                 } else {
-                                  onUncheckMark(4)
+                                  onUncheckMark(4);
                                 }
                               }}
                             />
@@ -284,19 +355,20 @@ const EcommerceProducts = props => {
                               className="form-check-label"
                               htmlFor="productratingCheck1"
                             >
-                              4 <i className="bx bx-star text-warning"></i> & Above
-                        </Label>
+                              4 <i className="bx bx-star text-warning"></i> &
+                              Above
+                            </Label>
                           </div>
                           <div className="form-check mt-2">
                             <Input
                               type="checkbox"
                               className="form-check-input"
                               id="productratingCheck2"
-                              onChange={e => {
+                              onChange={(e) => {
                                 if (e.target.checked) {
-                                  onChangeRating(3)
+                                  onChangeRating(3);
                                 } else {
-                                  onUncheckMark(3)
+                                  onUncheckMark(3);
                                 }
                               }}
                             />
@@ -304,19 +376,20 @@ const EcommerceProducts = props => {
                               className="form-check-label"
                               htmlFor="productratingCheck2"
                             >
-                              3 <i className="bx bx-star text-warning"></i> & Above
-                        </Label>
+                              3 <i className="bx bx-star text-warning"></i> &
+                              Above
+                            </Label>
                           </div>
                           <div className="form-check mt-2">
                             <Input
                               type="checkbox"
                               className="form-check-input"
                               id="productratingCheck3"
-                              onChange={e => {
+                              onChange={(e) => {
                                 if (e.target.checked) {
-                                  onChangeRating(2)
+                                  onChangeRating(2);
                                 } else {
-                                  onUncheckMark(2)
+                                  onUncheckMark(2);
                                 }
                               }}
                             />
@@ -324,19 +397,20 @@ const EcommerceProducts = props => {
                               className="form-check-label"
                               htmlFor="productratingCheck3"
                             >
-                              2 <i className="bx bx-star text-warning"></i> & Above
-                        </Label>
+                              2 <i className="bx bx-star text-warning"></i> &
+                              Above
+                            </Label>
                           </div>
                           <div className="form-check mt-2">
                             <Input
                               type="checkbox"
                               className="form-check-input"
                               id="productratingCheck4"
-                              onChange={e => {
+                              onChange={(e) => {
                                 if (e.target.checked) {
-                                  onSelectRating(1)
+                                  onSelectRating(1);
                                 } else {
-                                  onUncheckMark(1)
+                                  onUncheckMark(1);
                                 }
                               }}
                             />
@@ -355,13 +429,23 @@ const EcommerceProducts = props => {
                   <div className="p-4 border-top">
                     <div>
                       <h5 className="font-size-14 mb-0">
-                        <Link to="#" onClick={filterdiscountstoggle} className="text-dark d-block" >Discount <i className="mdi mdi-chevron-up float-end accor-down-icon"></i></Link>
+                        <Link
+                          to="#"
+                          onClick={filterdiscountstoggle}
+                          className="text-dark d-block"
+                        >
+                          Discount{' '}
+                          <i className="mdi mdi-chevron-up float-end accor-down-icon"></i>
+                        </Link>
                       </h5>
-                      <Collapse isOpen={isFilterProductDiscountOpen} id="filterprodductcolor-collapse">
+                      <Collapse
+                        isOpen={isFilterProductDiscountOpen}
+                        id="filterprodductcolor-collapse"
+                      >
                         {discountData.map((discount, i) => (
                           <div
                             className="form-check mt-2"
-                            key={"_discount_" + i}
+                            key={'_discount_' + i}
                           >
                             <Input
                               type="checkbox"
@@ -378,7 +462,6 @@ const EcommerceProducts = props => {
                       </Collapse>
                     </div>
                   </div>
-                  
                 </div>
               </Card>
             </Col>
@@ -392,7 +475,9 @@ const EcommerceProducts = props => {
                         <div>
                           <h5>Showing result for "Shoes"</h5>
                           <ol className="breadcrumb p-0 bg-transparent mb-2">
-                            <li className="breadcrumb-item"><Link to="#">Footwear</Link></li>
+                            <li className="breadcrumb-item">
+                              <Link to="#">Footwear</Link>
+                            </li>
                             <li className="breadcrumb-item active">Shoes</li>
                           </ol>
                         </div>
@@ -413,23 +498,37 @@ const EcommerceProducts = props => {
                         </div>
                       </Col>
                     </Row>
-                    <Nav tabs className="nav-tabs-custom mt-3 mb-2 ecommerce-sortby-list">
+                    <Nav
+                      tabs
+                      className="nav-tabs-custom mt-3 mb-2 ecommerce-sortby-list"
+                    >
                       <NavItem>
-                        <NavLink className="disabled fw-medium">Sort by:</NavLink>
+                        <NavLink className="disabled fw-medium">
+                          Sort by:
+                        </NavLink>
                       </NavItem>
                       <NavItem>
                         <NavLink className="active">Popularity</NavLink>
                       </NavItem>
-                      <NavItem><NavLink>Newest</NavLink> </NavItem>
-                      <NavItem><NavLink>Discount</NavLink></NavItem>
+                      <NavItem>
+                        <NavLink>Newest</NavLink>{' '}
+                      </NavItem>
+                      <NavItem>
+                        <NavLink>Discount</NavLink>
+                      </NavItem>
                     </Nav>
                     <Row>
                       {!isEmpty(productList) &&
                         productList.map((product, key) => (
-                          <Col xl="4" sm="6" key={"_col_" + key}>
-                            <div className="product-box" onClick={() =>
-                              history.push(`/ecommerce-products/${product.id}`)
-                            }>
+                          <Col xl="4" sm="6" key={'_col_' + key}>
+                            <div
+                              className="product-box"
+                              onClick={() =>
+                                history.push(
+                                  `/ecommerce-products/${product.id}`
+                                )
+                              }
+                            >
                               <div className="product-img pt-4 px-4">
                                 {product.islable ? (
                                   <div className="product-ribbon badge bg-warning">
@@ -446,18 +545,27 @@ const EcommerceProducts = props => {
                                     <i className="mdi mdi-heart-outline"></i>
                                   </Link>
                                 </div>
-                                <img src={product.image} alt="" className="img-fluid mx-auto d-block" />
+                                <img
+                                  src={product.image}
+                                  alt=""
+                                  className="img-fluid mx-auto d-block"
+                                />
                               </div>
 
                               <div className="text-center product-content p-4">
-
-                                <h5 className="mb-1"><Link
-                                  to={"/ecommerce-product-detail/" + product.id}
-                                  className="text-dark"
-                                >
-                                  {product.name}{" "}
-                                </Link></h5>
-                                <p className="text-muted font-size-13">{product.currentcolor}, Shoes</p>
+                                <h5 className="mb-1">
+                                  <Link
+                                    to={
+                                      '/ecommerce-product-detail/' + product.id
+                                    }
+                                    className="text-dark"
+                                  >
+                                    {product.name}{' '}
+                                  </Link>
+                                </h5>
+                                <p className="text-muted font-size-13">
+                                  {product.currentcolor}, Shoes
+                                </p>
 
                                 <h5 className="mt-3 mb-0">
                                   <span className="text-muted me-2">
@@ -467,16 +575,21 @@ const EcommerceProducts = props => {
                                 </h5>
 
                                 <ul className="list-inline mb-0 text-muted product-color">
-                                  <li className="list-inline-item">
-                                    Colors :
-                                  </li>
-                                  {!isEmpty(product.colors) && product.colors.map((pcolor, colorkey) => (
-                                    <React.Fragment key={key + "_color_" + colorkey}>
-                                      <li className="list-inline-item">
-                                        <i className={"mdi mdi-circle text-" + pcolor}></i>
-                                      </li>
-                                    </React.Fragment>
-                                  ))}
+                                  <li className="list-inline-item">Colors :</li>
+                                  {!isEmpty(product.colors) &&
+                                    product.colors.map((pcolor, colorkey) => (
+                                      <React.Fragment
+                                        key={key + '_color_' + colorkey}
+                                      >
+                                        <li className="list-inline-item">
+                                          <i
+                                            className={
+                                              'mdi mdi-circle text-' + pcolor
+                                            }
+                                          ></i>
+                                        </li>
+                                      </React.Fragment>
+                                    ))}
                                 </ul>
                               </div>
                             </div>
@@ -500,7 +613,10 @@ const EcommerceProducts = props => {
                               />
                             </PaginationItem>
                             {map(Array(totalPage), (item, i) => (
-                              <PaginationItem active={i + 1 === page} key={"_pagination_" + i}>
+                              <PaginationItem
+                                active={i + 1 === page}
+                                key={'_pagination_' + i}
+                              >
                                 <PaginationLink
                                   onClick={() => handlePageClick(i + 1)}
                                   to="#"
@@ -528,24 +644,24 @@ const EcommerceProducts = props => {
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 EcommerceProducts.propTypes = {
   products: PropTypes.array,
   history: PropTypes.object,
   onGetProducts: PropTypes.func,
-}
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   products: state.ecommerce.products,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onGetProducts: () => dispatch(getProducts()),
-})
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(EcommerceProducts))
+)(withRouter(EcommerceProducts));

@@ -1,6 +1,11 @@
-import PropTypes from 'prop-types'
-import React, { useState, useEffect } from "react"
+import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import history from '../../history';
+
 import {
+  Input,
+  Label,
+  Form,
   Container,
   Row,
   Col,
@@ -9,58 +14,82 @@ import {
   CardBody,
   Media,
   Button,
-} from "reactstrap"
+} from 'reactstrap';
 
 // availity-reactstrap-validation
-import { AvForm, AvField } from "availity-reactstrap-validation"
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 // Redux
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 //Import Breadcrumb
-import Breadcrumb from "../../components/Common/Breadcrumb"
+import Breadcrumb from '../../components/Common/Breadcrumb';
 
-import avatar from "../../assets/images/users/avatar-1.jpg"
+import avatar from '../../assets/images/users/avatar.jpg';
 // actions
-import { editProfile, resetProfileFlag } from "../../store/actions"
+import { updateUserProfile, getUserDetails } from '../../store/actions';
+import { USER_UPDATE_PROFILE_RESET } from '../../store/auth/updateProfile/actionTypes';
 
-const UserProfile = props => {
-  const [email, setemail] = useState("")
-  const [name, setname] = useState("")
-  const [idx, setidx] = useState(1)
+const ProfileScreen = (props) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageSuccess, setMessageSuccess] = useState('');
+
+  const dispatch = useDispatch();
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { error, loading, user } = userDetails;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
-    if (localStorage.getItem("authUser")) {
-      const obj = JSON.parse(localStorage.getItem("authUser"))
-      if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-        setname(obj.displayName)
-        setemail(obj.email)
-        setidx(obj.uid)
-      } else if (
-        process.env.REACT_APP_DEFAULTAUTH === "fake" ||
-        process.env.REACT_APP_DEFAULTAUTH === "jwt"
-      ) {
-        setname(obj.username)
-        setemail(obj.email)
-        setidx(obj.uid)
+    if (!userInfo) {
+      history.push('/login');
+    } else {
+      if (!user || !user.name || success || userInfo._id !== user._id) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+        dispatch(getUserDetails('profile'));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
       }
-      setTimeout(() => {
-        props.resetProfileFlag();
-      }, 3000);
     }
-  }, [props.success,props])
+  }, [dispatch, userInfo, user, success]);
 
-  function handleValidSubmit(event, values) {
-    props.editProfile(values)
-  }
+  // handleValidSubmit
+  const handleValidSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setMessage("Le Mot De Passe N'est Pas Identique !!!");
+    } else {
+      dispatch(
+        updateUserProfile({
+          id: user._id,
+          name: name,
+          email: email,
+          password: password,
+        })
+      );
+      setMessage('');
+      setMessageSuccess('Le compte à étè ajouté avec succès');
+    }
+  };
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumb */}
-          <Breadcrumb title="Minible" breadcrumbItem="Profile" />
+          <Breadcrumb title="Minible" breadcrumbItem="Manager Profile" />
 
           <Row>
             <Col lg="12">
@@ -77,7 +106,7 @@ const UserProfile = props => {
                     <div className="ms-3">
                       <img
                         src={avatar}
-                        alt=""
+                        alt="Avatar"
                         className="avatar-md rounded-circle img-thumbnail"
                       />
                     </div>
@@ -85,7 +114,6 @@ const UserProfile = props => {
                       <div className="text-muted">
                         <h5>{name}</h5>
                         <p className="mb-1">{email}</p>
-                        <p className="mb-0">Id no: #{idx}</p>
                       </div>
                     </Media>
                   </Media>
@@ -94,53 +122,124 @@ const UserProfile = props => {
             </Col>
           </Row>
 
-          <h4 className="card-title mb-4">Change User Name</h4>
+          <h4 className="card-title mb-4">Update Profile</h4>
 
-          <Card>
-            <CardBody>
-              <AvForm
-                className="form-horizontal"
-                onValidSubmit={(e, v) => {
-                  handleValidSubmit(e, v)
-                }}
-              >
-                <div className="form-group">
-                  <AvField
-                    name="username"
-                    label="User Name"
-                    value={name}
-                    className="form-control"
-                    placeholder="Enter User Name"
-                    type="text"
-                    required
-                  />
-                  <AvField name="idx" value={idx} type="hidden" />
-                </div>
-                <div className="text-center mt-4">
-                  <Button type="submit" color="danger">
-                    Update User Name
-                  </Button>
-                </div>
-              </AvForm>
-            </CardBody>
-          </Card>
+          {error && <Alert color="danger">{error}</Alert>}
+
+          {message && <Alert color="danger">{message}</Alert>}
+
+          <Row className="justify-content-center">
+            <Col md={8}>
+              <div className="mt-5 mt-lg-4">
+                <Form onSubmit={handleValidSubmit}>
+                  <Row className="mb-4">
+                    <Label
+                      htmlFor="horizontal-firstname-input"
+                      className="col-sm-3 col-form-label"
+                    >
+                      Nom
+                    </Label>
+                    <Col sm={9}>
+                      <Input
+                        name="name"
+                        type="name"
+                        className="form-control"
+                        id="horizontal-firstname-input"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row className="mb-4">
+                    <Label
+                      htmlFor="horizontal-email-input"
+                      className="col-sm-3 col-form-label"
+                    >
+                      Email
+                    </Label>
+                    <Col sm={9}>
+                      <Input
+                        type="email"
+                        className="form-control"
+                        id="horizontal-email-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </Col>
+                  </Row>
+                  <Row className="mb-4">
+                    <Label
+                      htmlFor="horizontal-password-input"
+                      className="col-sm-3 col-form-label"
+                    >
+                      Password
+                    </Label>
+                    <Col sm={9}>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        id="horizontal-password-input"
+                        placeholder="Enter Password"
+                        autoComplete="new-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </Col>
+                  </Row>
+                  <Row className="mb-4">
+                    <Label
+                      htmlFor="horizontal-password-input"
+                      className="col-sm-3 col-form-label"
+                    >
+                      Confirm Password
+                    </Label>
+                    <Col sm={9}>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        id="horizontal-confirm-password-input"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                      />
+                    </Col>
+                  </Row>
+
+                  <div className="row justify-content-end">
+                    <Col sm={9}>
+                      <div className="text-center">
+                        <Button type="submit" color="primary" className="w-md">
+                          Submit Update
+                        </Button>
+                      </div>
+                    </Col>
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-UserProfile.propTypes = {
+ProfileScreen.propTypes = {
   editProfile: PropTypes.func,
   error: PropTypes.any,
-  success: PropTypes.any
-}
+  success: PropTypes.any,
+};
 
-const mapStatetoProps = state => {
-  const { error, success } = state.Profile
-  return { error, success }
-}
+export default ProfileScreen;
 
-export default withRouter(
-  connect(mapStatetoProps, { editProfile, resetProfileFlag })(UserProfile)
-)
+// const mapStatetoProps = (state) => {
+//   const { error, success } = state.Profile;
+//   return { error, success };
+// };
+
+// export default withRouter(
+//   connect(mapStatetoProps, { editProfile, resetProfileFlag })(UserProfile)
+// );

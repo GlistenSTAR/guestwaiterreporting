@@ -4,11 +4,9 @@ import { Redirect } from 'react-router-dom';
 // // Pages Component
 import Chat from '../pages/Chat/Chat';
 
+// ADDED BY HAFID
 // Dashboard
 import Dashboard from '../pages/Dashboard/index';
-
-// Added By Me
-//import main from '../pages/Dashboard/main';
 
 // Bande de Controle
 import Controle from '../pages/Controle/Controle';
@@ -24,6 +22,9 @@ import Program from '../pages/Program/Program';
 
 // Pages Calendar
 import Calendar from '../pages/Calendar/index';
+
+// Default Modal
+//import DefaultModal from '../pages/DefaultModal';
 
 // //Ecommerce Pages
 import EcommerceProducts from '../pages/Ecommerce/EcommerceProducts/index';
@@ -124,7 +125,7 @@ import MapsLeaflet from '../pages/Maps/MapsLeaflet';
 
 // Authentication related pages
 import Login from '../pages/Authentication/Login';
-import Logout from '../pages/Authentication/Logout';
+//import Logout from '../pages/Authentication/Logout';
 import Register from '../pages/Authentication/Register';
 import ForgetPwd from '../pages/Authentication/ForgetPassword';
 
@@ -152,6 +153,10 @@ const userRoutes = [
   //chat
   { path: '/chat', component: Chat },
 
+  { path: '/register', component: Register },
+
+  // { path: '/delete/:id', component: defaultModal },
+
   //Ecommerce
   { path: '/ecommerce-products', component: EcommerceProducts },
   { path: '/ecommerce-product-detail', component: EcommerceProductDetail },
@@ -178,7 +183,7 @@ const userRoutes = [
   // Users
   { path: '/users', component: Users },
   { path: '/contacts-list', component: ContactsList },
-  { path: '/contacts-profile', component: ContactsProfile },
+  { path: '/contacts-profile/:id/edit', component: ContactsProfile },
 
   //Utility
   { path: '/pages-starter', component: PagesStarter },
@@ -254,10 +259,10 @@ const userRoutes = [
 ];
 
 const authRoutes = [
-  { path: '/logout', component: Logout },
+  // { path: '/logout', component: Logout },
   { path: '/login', component: Login },
   { path: '/forgot-password', component: ForgetPwd },
-  { path: '/register', component: Register },
+  //{ path: '/register', component: Register },
 
   { path: '/pages-maintenance', component: PagesMaintenance },
   { path: '/pages-comingsoon', component: PagesComingsoon },

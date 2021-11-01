@@ -36,6 +36,8 @@ import {
   changeSidebarType,
 } from '../../store/actions';
 
+//import Restaurants from '../../pages/Restaurants/Restaurants';
+
 const Header = (props) => {
   const [search, setsearch] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
@@ -83,7 +85,7 @@ const Header = (props) => {
         <div className="navbar-header">
           <div className="d-flex justify-content-around align-items-center layout">
             <p className="text-muted text-center">
-              Today C.A <span className="lead">245.45</span> €
+              Today C.A <span className="lead">{/* <Restaurants /> */}</span> €
             </p>
             <p className="text-muted text-center">
               Yesterday C.A <span className="lead">347.25</span> €
@@ -126,13 +128,6 @@ const Header = (props) => {
             >
               <i className="fa fa-fw fa-bars" />
             </button>
-
-            {/* <Form className="app-search d-none d-lg-block">
-              <div className="position-relative">
-                <input type="text" className="form-control" placeholder={props.t('Search') + '...'} />
-                <span className="uil-search"></span>
-              </div>
-            </Form> */}
           </div>
 
           <div className="d-flex">
@@ -174,66 +169,6 @@ const Header = (props) => {
 
             <LanguageDropdown />
 
-            {/* <Dropdown
-              className="d-none d-lg-inline-block ms-1"
-              isOpen={socialDrp}
-              toggle={() => {
-                setsocialDrp(!socialDrp)
-              }}
-            >
-              <DropdownToggle
-                className="btn header-item noti-icon waves-effect"
-                tag="button"
-              >
-                <i className="uil-apps"></i>
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-lg dropdown-menu-end" right>
-                <div className="px-lg-2">
-                  <Row className="g-0">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={github} alt="Github" />
-                        <span>GitHub</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={bitbucket} alt="bitbucket" />
-                        <span>Bitbucket</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={dribbble} alt="dribbble" />
-                        <span>Dribbble</span>
-                      </Link>
-                    </Col>
-                  </Row>
-
-                  <Row className="g-0">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={dropbox} alt="dropbox" />
-                        <span>Dropbox</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={mail_chimp} alt="mail_chimp" />
-                        <span>Mail Chimp</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src={slack} alt="slack" />
-                        <span>Slack</span>
-                      </Link>
-                    </Col>
-                  </Row>
-                </div>
-              </DropdownMenu>
-            </Dropdown> */}
-
             <Dropdown className="d-none d-lg-inline-block ms-1">
               <button
                 type="button"
@@ -250,20 +185,6 @@ const Header = (props) => {
             <NotificationDropdown />
 
             <ProfileMenu />
-
-            <div
-              onClick={() => {
-                props.showRightSidebarAction(!props.showRightSidebar);
-              }}
-              className="dropdown d-inline-block"
-            >
-              <button
-                type="button"
-                className="btn header-item noti-icon right-bar-toggle waves-effect"
-              >
-                <i className="uil-cog"></i>
-              </button>
-            </div>
           </div>
         </div>
       </header>

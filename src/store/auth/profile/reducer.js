@@ -1,29 +1,27 @@
-import { PROFILE_ERROR, PROFILE_SUCCESS, EDIT_PROFILE, RESET_PROFILE_FLAG } from "./actionTypes"
+import {
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
+  USER_DETAILS_RESET,
+} from './actionTypes';
 
-const initialState = {
-  error: "",
-  success: "",
-}
-
-const profile = (state = initialState, action) => {
+const userDetailsReducer = (state = { user: {} }, action) => {
   switch (action.type) {
-    case EDIT_PROFILE:
-      state = { ...state }
-      break
-    case PROFILE_SUCCESS:
-      state = { ...state, success: action.payload }
-      break
-    case PROFILE_ERROR:
-      state = { ...state, error: action.payload }
-      break
-    case RESET_PROFILE_FLAG :
-      state = { ...state, success: null }
-      break
-    default:
-      state = { ...state }
-      break
-  }
-  return state
-}
+    case USER_DETAILS_REQUEST:
+      return { ...state, loading: true };
 
-export default profile
+    case USER_DETAILS_SUCCESS:
+      return { loading: false, user: action.payload };
+
+    case USER_DETAILS_FAIL:
+      return { loading: false, error: action.payload };
+
+    case USER_DETAILS_RESET:
+      return { user: {} };
+
+    default:
+      return state;
+  }
+};
+
+export default userDetailsReducer;

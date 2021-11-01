@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -16,50 +16,51 @@ import {
   Input,
   TabPane,
   Table,
-} from "reactstrap"
-import classnames from "classnames"
-import { isEmpty } from "lodash"
+} from 'reactstrap';
+import classnames from 'classnames';
+import { isEmpty } from 'lodash';
 
 //Import Breadcrumb
-import Breadcrumbs from "../../../components/Common/Breadcrumb"
+import Breadcrumbs from '../../../components/Common/Breadcrumb';
 
 //Import actions
-import { getProductDetail } from "../../../store/actions"
-import Reviews from "./Reviews"
+import { getProductDetail } from '../../../store/actions';
+import Reviews from './Reviews';
 
-const EcommerceProductDetail = props => {
+const EcommerceProductDetail = (props) => {
   const {
     product,
     match: { params },
     onGetProductDetail,
-  } = props
-  const [activeTab, setActiveTab] = useState("1")
-  const [activeDescriptionTab, setDescriptionActiveTab] = useState("specifications")
+  } = props;
+  const [activeTab, setActiveTab] = useState('1');
+  const [activeDescriptionTab, setDescriptionActiveTab] =
+    useState('specifications');
 
   useEffect(() => {
     if (params && params.id) {
-      onGetProductDetail(params.id)
+      onGetProductDetail(params.id);
     } else {
-      onGetProductDetail(1)
+      onGetProductDetail(1);
     }
-  }, [onGetProductDetail, params])
+  }, [onGetProductDetail, params]);
 
-  const toggleTab = tab => {
+  const toggleTab = (tab) => {
     if (activeTab !== tab) {
-      setActiveTab(tab)
+      setActiveTab(tab);
     }
-  }
+  };
 
-  const toggledescription = tab => {
+  const toggledescription = (tab) => {
     if (activeDescriptionTab !== tab) {
-      setDescriptionActiveTab(tab)
+      setDescriptionActiveTab(tab);
     }
-  }
+  };
 
   const imageShow = (img, id) => {
-    const expandImg = document.getElementById("expandedImg" + id)
-    expandImg.src = img
-  }
+    const expandImg = document.getElementById('expandedImg' + id);
+    expandImg.src = img;
+  };
 
   return (
     <React.Fragment>
@@ -80,20 +81,17 @@ const EcommerceProductDetail = props => {
                                 <NavItem>
                                   <NavLink
                                     className={classnames({
-                                      active: activeTab === "1",
+                                      active: activeTab === '1',
                                     })}
                                     onClick={() => {
-                                      toggleTab("1")
+                                      toggleTab('1');
                                     }}
                                   >
                                     <img
                                       src={product.image}
                                       alt=""
                                       onClick={() => {
-                                        imageShow(
-                                          product.image,
-                                          1
-                                        )
+                                        imageShow(product.image, 1);
                                       }}
                                       className="img-fluid mx-auto d-block tab-img rounded"
                                     />
@@ -102,20 +100,17 @@ const EcommerceProductDetail = props => {
                                 <NavItem>
                                   <NavLink
                                     className={classnames({
-                                      active: activeTab === "2",
+                                      active: activeTab === '2',
                                     })}
                                     onClick={() => {
-                                      toggleTab("2")
+                                      toggleTab('2');
                                     }}
                                   >
                                     <img
                                       src={product.extraimgs[0]}
                                       alt=""
                                       onClick={() => {
-                                        imageShow(
-                                          product.extraimgs[0],
-                                          2
-                                        )
+                                        imageShow(product.extraimgs[0], 2);
                                       }}
                                       className="img-fluid mx-auto d-block tab-img rounded"
                                     />
@@ -124,20 +119,17 @@ const EcommerceProductDetail = props => {
                                 <NavItem>
                                   <NavLink
                                     className={classnames({
-                                      active: activeTab === "3",
+                                      active: activeTab === '3',
                                     })}
                                     onClick={() => {
-                                      toggleTab("3")
+                                      toggleTab('3');
                                     }}
                                   >
                                     <img
                                       src={product.extraimgs[1]}
                                       alt=""
                                       onClick={() => {
-                                        imageShow(
-                                          product.extraimgs[1],
-                                          3
-                                        )
+                                        imageShow(product.extraimgs[1], 3);
                                       }}
                                       className="img-fluid mx-auto d-block tab-img rounded"
                                     />
@@ -146,20 +138,17 @@ const EcommerceProductDetail = props => {
                                 <NavItem>
                                   <NavLink
                                     className={classnames({
-                                      active: activeTab === "4",
+                                      active: activeTab === '4',
                                     })}
                                     onClick={() => {
-                                      toggleTab("4")
+                                      toggleTab('4');
                                     }}
                                   >
                                     <img
                                       src={product.extraimgs[2]}
                                       alt=""
                                       onClick={() => {
-                                        imageShow(
-                                          product.extraimgs[2],
-                                          4
-                                        )
+                                        imageShow(product.extraimgs[2], 4);
                                       }}
                                       className="img-fluid mx-auto d-block tab-img rounded"
                                     />
@@ -168,7 +157,10 @@ const EcommerceProductDetail = props => {
                               </Nav>
                             </Col>
                             <Col xs="9">
-                              <TabContent activeTab={activeTab} className="position-relative">
+                              <TabContent
+                                activeTab={activeTab}
+                                className="position-relative"
+                              >
                                 <div className="product-wishlist">
                                   <Link to="#">
                                     <i className="mdi mdi-heart-outline"></i>
@@ -222,8 +214,9 @@ const EcommerceProductDetail = props => {
                                     color="primary"
                                     className="btn-block waves-effect waves-light mt-2 me-1"
                                   >
-                                    <i className="uil uil-shopping-cart-alt me-2"></i> Add to cart
-                                </Button>
+                                    <i className="uil uil-shopping-cart-alt me-2"></i>{' '}
+                                    Add to cart
+                                  </Button>
                                 </div>
                                 <div className="col-sm-6 d-grid">
                                   <Button
@@ -231,8 +224,9 @@ const EcommerceProductDetail = props => {
                                     color="light"
                                     className="btn-block waves-effect  mt-2 waves-light"
                                   >
-                                    <i className="uil uil-shopping-basket me-2"></i>Buy now
-                                </Button>
+                                    <i className="uil uil-shopping-basket me-2"></i>
+                                    Buy now
+                                  </Button>
                                 </div>
                               </Row>
                             </Col>
@@ -250,30 +244,46 @@ const EcommerceProductDetail = props => {
                           <h4 className="font-size-20 mb-3">{product.name}</h4>
 
                           <div className="text-muted">
-                            <span className="badge bg-success font-size-14 me-1"><i className="mdi mdi-star"></i> 4.2</span> {product.reviews} Reviews
+                            <span className="badge bg-success font-size-14 me-1">
+                              <i className="mdi mdi-star"></i> 4.2
+                            </span>{' '}
+                            {product.reviews} Reviews
                           </div>
 
-                          <h5 className="mt-4 pt-2"><del className="text-muted me-2">${product.oldPrice}</del>${product.newPrice} <span className="text-danger font-size-14 ms-2">{!!product.isOffer && (
-                            <h6 className="text-success text-uppercase">
-                              {product.offer} % Off
-                            </h6>
-                          )}</span></h5>
+                          <h5 className="mt-4 pt-2">
+                            <del className="text-muted me-2">
+                              ${product.oldPrice}
+                            </del>
+                            ${product.newPrice}{' '}
+                            <span className="text-danger font-size-14 ms-2">
+                              {!!product.isOffer && (
+                                <h6 className="text-success text-uppercase">
+                                  {product.offer} % Off
+                                </h6>
+                              )}
+                            </span>
+                          </h5>
 
                           <p className="mt-4 text-muted">
-                          {product.decription}
+                            {product.decription}
                           </p>
                           <div>
                             <Row>
                               <Col md="6">
                                 <div className="mt-3">
-                                  <h5 className="font-size-14">Specification :</h5>
+                                  <h5 className="font-size-14">
+                                    Specification :
+                                  </h5>
                                   <ul className="list-unstyled product-desc-list text-muted">
                                     {product.shortspecifications &&
-                                      product.shortspecifications.map((item, i) => (
-                                        <li key={i}>
-                                          <i className="mdi mdi-circle-medium me-1 align-middle"></i> {item}
-                                        </li>
-                                      ))}
+                                      product.shortspecifications.map(
+                                        (item, i) => (
+                                          <li key={i}>
+                                            <i className="mdi mdi-circle-medium me-1 align-middle"></i>{' '}
+                                            {item}
+                                          </li>
+                                        )
+                                      )}
                                   </ul>
                                 </div>
                               </Col>
@@ -283,7 +293,16 @@ const EcommerceProductDetail = props => {
                                   <ul className="list-unstyled product-desc-list text-muted">
                                     {product.shortservices &&
                                       product.shortservices.map((item, i) => (
-                                        <li key={i}><i className={"uil uil-" + item.icon + " text-primary me-1 font-size-16"}></i> {item.value}</li>
+                                        <li key={i}>
+                                          <i
+                                            className={
+                                              'uil uil-' +
+                                              item.icon +
+                                              ' text-primary me-1 font-size-16'
+                                            }
+                                          ></i>{' '}
+                                          {item.value}
+                                        </li>
                                       ))}
                                   </ul>
                                 </div>
@@ -307,19 +326,24 @@ const EcommerceProductDetail = props => {
                             </div>
                           </div>
                           <div className="mt-3">
-
-                            <h5 className="font-size-14 mb-3"><i className="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i> Delivery location</h5>
+                            <h5 className="font-size-14 mb-3">
+                              <i className="uil uil-location-pin-alt font-size-20 text-primary align-middle me-2"></i>{' '}
+                              Delivery location
+                            </h5>
 
                             <div className="d-inline-flex">
-
                               <div className="input-group mb-3">
-                                <Input type="text" className="form-control" placeholder="Enter Delivery pincode" />
+                                <Input
+                                  type="text"
+                                  className="form-control"
+                                  placeholder="Enter Delivery pincode"
+                                />
 
-                                <Button color="light" type="button">Check</Button>
-
+                                <Button color="light" type="button">
+                                  Check
+                                </Button>
                               </div>
                             </div>
-
                           </div>
                           <Row>
                             <Col lg="7" sm="8">
@@ -329,7 +353,11 @@ const EcommerceProductDetail = props => {
                                   {product.colorOptions &&
                                     product.colorOptions.map((option, i) => (
                                       <li className="list-inline-item" key={i}>
-                                        <Link to="#" className={(i === 0) ? 'active' : ''} title={option.color}>
+                                        <Link
+                                          to="#"
+                                          className={i === 0 ? 'active' : ''}
+                                          title={option.color}
+                                        >
                                           <div className="product-color-item">
                                             <img
                                               src={option.image}
@@ -337,20 +365,31 @@ const EcommerceProductDetail = props => {
                                               className="avatar-md"
                                             />
                                           </div>
-                                        </Link>{" "}
+                                        </Link>{' '}
                                       </li>
                                     ))}
                                   <li className="list-inline-item">
-                                    <Link to="#" className="text-primary border-0 p-1"> 2 + Colors </Link>
+                                    <Link
+                                      to="#"
+                                      className="text-primary border-0 p-1"
+                                    >
+                                      {' '}
+                                      2 + Colors{' '}
+                                    </Link>
                                   </li>
                                 </ul>
                               </div>
                             </Col>
                             <Col lg={5} sm={4}>
                               <div className="mt-3">
-                                <h5 className="font-size-14 mb-3">Select Sizes :</h5>
+                                <h5 className="font-size-14 mb-3">
+                                  Select Sizes :
+                                </h5>
                                 <div className="d-inline-flex">
-                                  <Input type="select" className="form-select w-sm">
+                                  <Input
+                                    type="select"
+                                    className="form-select w-sm"
+                                  >
                                     <option value="1">3</option>
                                     <option value="2">4</option>
                                     <option value="3">5</option>
@@ -368,45 +407,82 @@ const EcommerceProductDetail = props => {
                       </Col>
                     </Row>
                     <div className="mt-4">
-                      <h5 className="font-size-14 mb-3">Product description: </h5>
+                      <h5 className="font-size-14 mb-3">
+                        Product description:{' '}
+                      </h5>
                       <div className="product-desc">
                         <Nav tabs className="nav-tabs-custom">
                           <NavItem>
                             <NavLink
-                              className={classnames({ active: activeDescriptionTab === 'description' })}
-                              onClick={() => { toggledescription('description'); }}
+                              className={classnames({
+                                active: activeDescriptionTab === 'description',
+                              })}
+                              onClick={() => {
+                                toggledescription('description');
+                              }}
                             >
                               Description
                             </NavLink>
                           </NavItem>
                           <NavItem>
                             <NavLink
-                              className={classnames({ active: activeDescriptionTab === 'specifications' })}
-                              onClick={() => { toggledescription('specifications'); }}
+                              className={classnames({
+                                active:
+                                  activeDescriptionTab === 'specifications',
+                              })}
+                              onClick={() => {
+                                toggledescription('specifications');
+                              }}
                             >
                               Specifications
-                              </NavLink>
+                            </NavLink>
                           </NavItem>
                         </Nav>
-                        <TabContent activeTab={activeDescriptionTab} className="border border-top-0 p-4">
+                        <TabContent
+                          activeTab={activeDescriptionTab}
+                          className="border border-top-0 p-4"
+                        >
                           <TabPane tabId="description">
                             <Row>
                               <Col sm={3} md={2}>
                                 <div>
-                                  <img src={product.image} alt="" className="img-fluid mx-auto d-block" />
+                                  <img
+                                    src={product.image}
+                                    alt=""
+                                    className="img-fluid mx-auto d-block"
+                                  />
                                 </div>
                               </Col>
                               <Col sm={9} md={10}>
                                 <div className="text-muted p-2">
-                                  <p>If several languages coalesce, the grammar of the resulting language is more simple and regular</p>
-                                  <p>Everyone realizes why a new common language would be desirable, one could refuse to pay expensive translators.</p>
-                                  <p>It will be as simple as occidental in fact.</p>
+                                  <p>
+                                    If several languages coalesce, the grammar
+                                    of the resulting language is more simple and
+                                    regular
+                                  </p>
+                                  <p>
+                                    Everyone realizes why a new common language
+                                    would be desirable, one could refuse to pay
+                                    expensive translators.
+                                  </p>
+                                  <p>
+                                    It will be as simple as occidental in fact.
+                                  </p>
 
                                   <div>
                                     <ul className="list-unstyled product-desc-list text-muted">
-                                      <li><i className="mdi mdi-circle-medium me-1 align-middle"></i> Sed ut perspiciatis omnis iste</li>
-                                      <li><i className="mdi mdi-circle-medium me-1 align-middle"></i> Neque porro quisquam est</li>
-                                      <li><i className="mdi mdi-circle-medium me-1 align-middle"></i> Quis autem vel eum iure</li>
+                                      <li>
+                                        <i className="mdi mdi-circle-medium me-1 align-middle"></i>{' '}
+                                        Sed ut perspiciatis omnis iste
+                                      </li>
+                                      <li>
+                                        <i className="mdi mdi-circle-medium me-1 align-middle"></i>{' '}
+                                        Neque porro quisquam est
+                                      </li>
+                                      <li>
+                                        <i className="mdi mdi-circle-medium me-1 align-middle"></i>{' '}
+                                        Quis autem vel eum iure
+                                      </li>
                                     </ul>
                                   </div>
                                 </div>
@@ -417,12 +493,19 @@ const EcommerceProductDetail = props => {
                             <Table className="table-nowrap mb-0">
                               <tbody>
                                 {product.specification &&
-                                  product.specification.map((specification, i) => (
-                                    <tr key={i}>
-                                      <th scope="row" style={{ width: "20%" }}>{specification.type}</th>
-                                      <td>{specification.value}</td>
-                                    </tr>
-                                  ))}
+                                  product.specification.map(
+                                    (specification, i) => (
+                                      <tr key={i}>
+                                        <th
+                                          scope="row"
+                                          style={{ width: '20%' }}
+                                        >
+                                          {specification.type}
+                                        </th>
+                                        <td>{specification.value}</td>
+                                      </tr>
+                                    )
+                                  )}
                               </tbody>
                             </Table>
                           </TabPane>
@@ -431,7 +514,6 @@ const EcommerceProductDetail = props => {
                     </div>
 
                     <Reviews comments={product.comments} />
-
                   </CardBody>
                 </Card>
               </Col>
@@ -440,23 +522,23 @@ const EcommerceProductDetail = props => {
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 EcommerceProductDetail.propTypes = {
   product: PropTypes.object,
   onGetProductDetail: PropTypes.func,
-}
+};
 
 const mapStateToProps = ({ ecommerce }) => ({
   product: ecommerce.product,
-})
+});
 
-const mapDispatchToProps = dispatch => ({
-  onGetProductDetail: id => dispatch(getProductDetail(id)),
-})
+const mapDispatchToProps = (dispatch) => ({
+  onGetProductDetail: (id) => dispatch(getProductDetail(id)),
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EcommerceProductDetail)
+)(EcommerceProductDetail);

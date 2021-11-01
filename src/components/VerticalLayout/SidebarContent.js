@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef } from 'react';
-import { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+
+import { logout } from '../../store/auth/userLogin/actions';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 // //Import Scrollbar
 import SimpleBar from 'simplebar-react';
@@ -13,15 +16,29 @@ import { Link } from 'react-router-dom';
 //i18n
 import { withTranslation } from 'react-i18next';
 
+import { login } from '../../store/actions';
+
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import RestaurantsList from '../../pages/RestaurantsList';
+//Register User
+//import Register from '../../pages/Authentication/Register';
 
 const SidebarContent = (props) => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const ref = useRef();
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   const activateParentDropdown = useCallback((item) => {
     item.classList.add('active');
@@ -93,8 +110,6 @@ const SidebarContent = (props) => {
     }
   }
 
-  const [singlebtn1, setSinglebtn1] = useState(false);
-
   return (
     <React.Fragment>
       <SimpleBar
@@ -102,34 +117,13 @@ const SidebarContent = (props) => {
         ref={ref}
         className="sidebar-menu-scroll"
       >
+        <RestaurantsList />
+
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="text-center master-tab">
-              <Dropdown
-                isOpen={singlebtn1}
-                toggle={() => setSinglebtn1(!singlebtn1)}
-                className="mt-4 mt-sm-0"
-                styles="borders:none;"
-              >
-                <i className="uil-building"></i>
-                <DropdownToggle
-                  tag="button"
-                  className="btn btn-light main-rest-tab"
-                  caret
-                >
-                  Restaurants 1<i className="mdi mdi-chevron-down" />
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Restaurants 2</DropdownItem>
-                  <DropdownItem>Restaurants 3</DropdownItem>
-                  <DropdownItem>Restaurants 4</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </li>
-
             <li className="menu-title">{props.t('Menu')} </li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="/dashboard" className="waves-effect">
                 <i className="uil-home-alt"></i>
                 {/* <span className="badge rounded-pill bg-primary float-end">
                   01
@@ -139,39 +133,59 @@ const SidebarContent = (props) => {
             </li>
 
             <li>
-              <Link to="controle" className="waves-effect">
+              <Link to="/controle" className="waves-effect">
                 <i className="uil-sliders-v"></i>
                 <span>{props.t('Bande De Controle')}</span>
               </Link>
             </li>
             <li>
-              <Link to="report" className="waves-effect">
+              <Link to="/report" className="waves-effect">
                 <i className="fas fa-chart-line"></i>
                 <span>{props.t('Report')}</span>
               </Link>
             </li>
             <li>
-              <Link to="waiters" className="waves-effect">
+              <Link to="/waiters" className="waves-effect">
                 <i className="fas fa-users"></i>
                 <span>{props.t('Vendeurs')}</span>
               </Link>
             </li>
             <li>
-              <Link to="program" className="waves-effect">
-                <i className="uil-slack"></i>
+              <Link to="/program" className="waves-effect">
+                <i className="fas fa-cash-register"></i>
                 <span>{props.t('Programmation')}</span>
               </Link>
             </li>
+            {userInfo.isAdmin ? (
+              <li>
+                <Link to="/users" className="waves-effect">
+                  <i className="fas fa-laptop-house"></i>
+                  <span>{props.t('Managers')}</span>
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
+            {userInfo.isAdmin ? (
+              <li>
+                <Link to="/register" className="waves-effect">
+                  <i className="fas fa-user-plus"></i>
+                  <span>{props.t('Ajouter Un Compte')}</span>
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
             <li>
-              <Link to="users" className="waves-effect">
-                <i className="fas fa-laptop-house"></i>
-                <span>{props.t('Comptes')}</span>
+              <Link to="/profile" className="waves-effect">
+                <i className="fas fa-user-edit"></i>
+                <span>{props.t('Editer Profile')}</span>
               </Link>
             </li>
             <li>
-              <Link to="logout" className="waves-effect">
-                <i className="uil-sign-out-alt"></i>
-                <span>{props.t('Déconnexion')}</span>
+              <Link to="" onClick={logoutHandler} className="waves-effect">
+                <i className="fas fa-sign-out-alt"></i>
+                <span>Déconnexion</span>
               </Link>
             </li>
 
@@ -448,7 +462,7 @@ const SidebarContent = (props) => {
                 </li>
               </ul>
             </li>
-
+            {/*
             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-list-ul"></i>
@@ -497,7 +511,7 @@ const SidebarContent = (props) => {
                   </Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
 
             <li>
               <Link to="/#" className="has-arrow waves-effect">
@@ -524,8 +538,8 @@ const SidebarContent = (props) => {
                 </li>
               </ul>
             </li>
-
-            {/* <li>
+            {/*
+             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="uil-location-point"></i>
                 <span>{props.t('Maps')}</span>

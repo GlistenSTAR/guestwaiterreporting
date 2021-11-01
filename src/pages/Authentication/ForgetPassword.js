@@ -1,32 +1,32 @@
-import PropTypes from 'prop-types'
-import React, { useEffect } from "react"
-import { Row, Col, Alert, Container, CardBody ,Card} from "reactstrap"
+import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { Row, Col, Alert, Container, CardBody, Card } from 'reactstrap';
 
 // Redux
-import { connect } from "react-redux"
-import { withRouter, Link } from "react-router-dom"
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 
 // availity-reactstrap-validation
-import { AvForm, AvField } from "availity-reactstrap-validation"
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 // action
-import { userForgetPassword } from "../../store/actions"
+import { userForgetPassword } from '../../store/actions';
 
 // import images
-import logo from "../../assets/images/logo-dark.png"
-import logolight from "../../assets/images/logo-light.png"
+import logo from '../../assets/images/logo-dark.png';
+import logolight from '../../assets/images/logo-light.png';
 
-const ForgetPasswordPage = props => {
+const ForgetPasswordPage = (props) => {
   useEffect(() => {
-    document.body.className = "authentication-bg";
+    document.body.className = 'authentication-bg';
     // remove classname when component will unmount
     return function cleanup() {
-      document.body.className = "";
+      document.body.className = '';
     };
   });
 
   function handleValidSubmit(event, values) {
-    props.userForgetPassword(values, props.history)
+    props.userForgetPassword(values, props.history);
   }
 
   return (
@@ -40,33 +40,50 @@ const ForgetPasswordPage = props => {
       <div className="account-pages my-5  pt-sm-5">
         <Container>
           <div className="row justify-content-center">
-
             <div className="col-md-8 col-lg-6 col-xl-5">
               <div>
-
                 <a href="/" className="mb-5 d-block auth-logo">
-                  <img src={logo} alt="" height="22" className="logo logo-dark" />
-                  <img src={logolight} alt="" height="22" className="logo logo-light" />
+                  <img
+                    src={logo}
+                    alt=""
+                    height="22"
+                    className="logo logo-dark"
+                  />
+                  <img
+                    src={logolight}
+                    alt=""
+                    height="22"
+                    className="logo logo-light"
+                  />
                 </a>
                 <Card>
-
                   <CardBody className="p-4">
-
                     <div className="text-center mt-2">
                       <h5 className="text-primary">Reset Password</h5>
                       <p className="text-muted">Reset Password with Minible.</p>
                     </div>
                     <div className="p-2 mt-4">
-                      <div className="alert alert-success text-center mb-4" role="alert">
+                      <div
+                        className="alert alert-success text-center mb-4"
+                        role="alert"
+                      >
                         Enter your Email and instructions will be sent to you!
-                                        </div>
+                      </div>
                       {props.forgetError && props.forgetError ? (
-                        <Alert color="danger" className="text-center mb-4" style={{ marginTop: "13px" }}>
+                        <Alert
+                          color="danger"
+                          className="text-center mb-4"
+                          style={{ marginTop: '13px' }}
+                        >
                           {props.forgetError}
                         </Alert>
                       ) : null}
                       {props.forgetSuccessMsg ? (
-                        <Alert color="success" className="text-center mb-4" style={{ marginTop: "13px" }}>
+                        <Alert
+                          color="success"
+                          className="text-center mb-4"
+                          style={{ marginTop: '13px' }}
+                        >
                           {props.forgetSuccessMsg}
                         </Alert>
                       ) : null}
@@ -92,22 +109,30 @@ const ForgetPasswordPage = props => {
                               type="submit"
                             >
                               Reset
-                          </button>
+                            </button>
                           </Col>
                         </Row>
                         <div className="mt-4 text-center">
-                          <p className="mb-0">Remember It ? <Link to="/login" className="fw-medium text-primary"> Signin </Link></p>
+                          <p className="mb-0">
+                            Remember It ?{' '}
+                            <Link
+                              to="/login"
+                              className="fw-medium text-primary"
+                            >
+                              {' '}
+                              Signin{' '}
+                            </Link>
+                          </p>
                         </div>
                       </AvForm>
                     </div>
-
                   </CardBody>
                 </Card>
                 <div className="mt-5 text-center">
-                <p>
-                  © {new Date().getFullYear()} Minible. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                </p>
+                  <p>
+                    © {new Date().getFullYear()} Minible. Crafted with{' '}
+                    <i className="mdi mdi-heart text-danger" /> by Themesbrand
+                  </p>
                 </div>
               </div>
             </div>
@@ -115,21 +140,21 @@ const ForgetPasswordPage = props => {
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 ForgetPasswordPage.propTypes = {
   forgetError: PropTypes.any,
   forgetSuccessMsg: PropTypes.any,
   history: PropTypes.object,
-  userForgetPassword: PropTypes.func
-}
+  userForgetPassword: PropTypes.func,
+};
 
-const mapStatetoProps = state => {
-  const { forgetError, forgetSuccessMsg } = state.ForgetPassword
-  return { forgetError, forgetSuccessMsg }
-}
+const mapStatetoProps = (state) => {
+  const { forgetError, forgetSuccessMsg } = state.ForgetPassword;
+  return { forgetError, forgetSuccessMsg };
+};
 
 export default withRouter(
   connect(mapStatetoProps, { userForgetPassword })(ForgetPasswordPage)
-)
+);
