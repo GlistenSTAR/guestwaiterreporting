@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
-import { listRestaurants, getRestaurantDetails } from '../store/actions';
+import { listRestaurants } from '../store/actions';
 
 import { Form } from 'react-bootstrap';
 
@@ -23,9 +23,7 @@ function RestaurantsList(props) {
         <div className="select-container">
           <Form.Select name="" id="">
             {restaurants.map((restaurant) => (
-              <option
-                key={restaurant._id}
-                value={restaurant.restaurant_name}>
+              <option key={restaurant._id} value={restaurant.restaurant_name}>
                 {restaurant.restaurant_name}
               </option>
             ))}
