@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 import MainFilter from './MainFilter';
 import TopStats from './TopStats';
 import TurnoverChart from './TurnoverChart';
-import WeatherCard from '../Weather/WeatherCard';
+// import WeatherCard from '../Weather/WeatherCard';
 
 const Dashboard = () => {
   return (
@@ -20,7 +20,7 @@ const Dashboard = () => {
             <TurnoverChart />
           </Row>
           <Row>
-            <WeatherCard />
+            {/* <WeatherCard /> */}
           </Row>
         </Container>
       </div>
