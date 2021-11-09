@@ -43,7 +43,7 @@ const TurnoverChart = () => {
       },
     },
     stroke: {
-      width: [1, 1, 4, 4],
+      width: [1, 1, 0, 4],
       curve: 'smooth',
     },
     plotOptions: {
@@ -51,7 +51,7 @@ const TurnoverChart = () => {
         columnWidth: '40%',
       },
     },
-    colors: ['#617cff', '#333f7e', '#40f3b1', '#237457'],
+    colors: ['#fcd670', '#333f7e', 'rgba(65, 131, 215, 0.4)', '#e87e04'],
 
     fill: {
       opacity: [1, 1, 1, 1],
@@ -114,7 +114,13 @@ const TurnoverChart = () => {
           <CardBody>
             <div className="float-end">
               <UncontrolledDropdown>
-                <DropdownToggle tag="a" className="text-reset" id="dropdownMenuButton5" caret href="#">
+                <DropdownToggle
+                  tag="a"
+                  className="text-reset"
+                  id="dropdownMenuButton5"
+                  caret
+                  href="#"
+                >
                   <span className="fw-semibold">Filter By :</span>{' '}
                   <span className="text-muted">
                     Today<i className="mdi mdi-chevron-down ms-1"></i>
@@ -137,7 +143,9 @@ const TurnoverChart = () => {
                     <span>
                       <CountUp end={2371} separator="," suffix=" €" />
                     </span>
-                    <span className="text-muted d-inline-block font-size-15 ms-3">Income</span>
+                    <span className="text-muted d-inline-block font-size-15 ms-3">
+                      Income
+                    </span>
                   </h3>
                 </li>{' '}
                 <li className="list-inline-item chart-border-left me-0">
@@ -145,7 +153,9 @@ const TurnoverChart = () => {
                     <span>
                       <CountUp end={258} />
                     </span>
-                    <span className="text-muted d-inline-block font-size-15 ms-3">Sales</span>
+                    <span className="text-muted d-inline-block font-size-15 ms-3">
+                      Sales
+                    </span>
                   </h3>
                 </li>{' '}
                 <li className="list-inline-item chart-border-left me-0">
@@ -153,14 +163,21 @@ const TurnoverChart = () => {
                     <span>
                       <CountUp end={3.6} decimals={1} suffix="%" />
                     </span>
-                    <span className="text-muted d-inline-block font-size-15 ms-3">Ratio</span>
+                    <span className="text-muted d-inline-block font-size-15 ms-3">
+                      Ratio
+                    </span>
                   </h3>
                 </li>
               </ul>
             </div>
 
             <div className="mt-3">
-              <ReactApexChart options={options} series={series} height="440" type="line" />
+              <ReactApexChart
+                options={options}
+                series={series}
+                height="440"
+                type="line"
+              />
             </div>
           </CardBody>
         </Card>

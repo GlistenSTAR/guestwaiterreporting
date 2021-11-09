@@ -51,8 +51,11 @@ const TopStats = (props, match, pk) => {
               <div id="orders-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Income Plats</h5>
+              <h5 className="mb-0 text-muted">Chiffre d'Affaires</h5>
               <h5>
+                <span>
+                  <CountUp end={155} separator="," suffix=" €" />
+                </span>
                 {/* {loading ? (
                   <p>Loading...</p>
                 ) : error ? (
@@ -86,7 +89,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Average Income Plats</h5>
+              <h5 className="mb-0 text-muted">Réglement</h5>
               <h5>
                 <span>
                   <CountUp end={70} separator="," suffix=" €" />
@@ -94,7 +97,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Income By Ticket</h5>
+              <h5 className="mb-0 text-muted">Couverts Encaissés</h5>
               <h5>
                 <span>
                   <CountUp end={65} separator="," suffix=" €" />
@@ -102,7 +105,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Total</h5>
+              <h5 className="mb-0 text-muted">Couvert Moyen</h5>
               <h4 className="mb-1 mt-1">
                 <span>
                   <CountUp end={370} separator="," suffix=" €" />
@@ -126,7 +129,7 @@ const TopStats = (props, match, pk) => {
               <div id="orders-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Income Plats N-1</h5>
+              <h5 className="mb-0 text-muted">Chiffre d'Affaires N-1</h5>
               <h5>
                 <span>
                   <CountUp end={25} separator="," suffix=" €" />
@@ -134,7 +137,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Average Income Plats N-1</h5>
+              <h5 className="mb-0 text-muted">Réglement N-1</h5>
               <h5>
                 <span>
                   <CountUp end={45} separator="," suffix=" €" />
@@ -142,7 +145,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Income By Ticket N-1</h5>
+              <h5 className="mb-0 text-muted">Couverts Encaissés N-1</h5>
               <h5>
                 <span>
                   <CountUp end={55} separator="," suffix=" €" />
@@ -150,7 +153,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="mb-0 text-muted">Total N-1</h5>
+              <h5 className="mb-0 text-muted">Couvert Moyen N-1</h5>
               <h4 className="mb-1 mt-1">
                 <span>
                   <CountUp end={270} separator="," suffix=" €" />
@@ -212,7 +215,7 @@ const TopStats = (props, match, pk) => {
               <div id="total-revenue-chart"></div>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="text-muted">Cash</h5>
+              <h5 className="text-muted">Card</h5>
               <h5>
                 <span>
                   <CountUp end={270} separator="," suffix=" €" />
@@ -220,7 +223,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="text-muted">Cheque</h5>
+              <h5 className="text-muted">Cash</h5>
               <h5>
                 <span>
                   <CountUp end={450} separator="," suffix=" €" />
@@ -228,7 +231,7 @@ const TopStats = (props, match, pk) => {
               </h5>
             </div>
             <div className="d-flex justify-content-between">
-              <h5 className="text-muted">Credit Cart</h5>
+              <h5 className="text-muted">Cheque</h5>
               <h5>
                 <span>
                   <CountUp end={650} separator="," suffix=" €" />

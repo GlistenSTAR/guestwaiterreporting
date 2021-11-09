@@ -4,7 +4,7 @@ import { listRestaurants } from '../store/actions';
 
 import { Form } from 'react-bootstrap';
 
-function RestaurantsList({restaurantsList, userInfo}) {
+function RestaurantsList({ restaurantsList, userInfo }) {
   const dispatch = useDispatch();
   let temp = [];
   let [list, setList] = useState(restaurantsList);
@@ -13,19 +13,19 @@ function RestaurantsList({restaurantsList, userInfo}) {
     dispatch(listRestaurants());
   }, [dispatch]);
 
-  useEffect(()=>{
-    if (restaurantsList.restaurants.length > 0 ){
-      if(!userInfo.isAdmin){
+  useEffect(() => {
+    if (restaurantsList.restaurants.length > 0) {
+      if (!userInfo.isAdmin) {
         restaurantsList.restaurants.map((item) => {
-            if (userInfo._id === item.manager._id){
-              temp.push(item);
-            }
+          if (userInfo._id === item.manager._id) {
+            temp.push(item);
+          }
         });
       } else {
         temp = restaurantsList.restaurants;
       }
     }
-    setList({...restaurantsList, restaurants : temp})
+    setList({ ...restaurantsList, restaurants: temp });
   }, [restaurantsList]);
 
   const { error, loading, restaurants } = list;
@@ -52,9 +52,9 @@ function RestaurantsList({restaurantsList, userInfo}) {
 }
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     restaurantsList: state.restaurantsList,
-    userInfo: state.userLogin.userInfo 
+    userInfo: state.userLogin.userInfo,
   };
 };
 

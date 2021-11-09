@@ -187,9 +187,24 @@ body[data-sidebar='dark'] .mm-active > a {
   }
 }
 
-.temp h1 {
+.temp-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    margin-bottom: 0;
+  }
+  img {
+    max-width: 70px;
+    height: auto;
+  }
+}
+
+.temp {
+  min-width: 6rem !important;
   font-weight: 300;
-  margin: 0 30px;
+  margin: 5px 30px;
+  padding: 3px 15px;
   background-color: rgba(133, 133, 133, 0.164);
   border-radius: 10px;
 }
