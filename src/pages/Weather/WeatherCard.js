@@ -24,7 +24,7 @@ class WeatherCard extends React.Component {
     );
     await api_call.json().then((data) => {
       this.setState({ fullData: data.daily });
-      console.log(data.daily);
+      // console.log(data.daily.map((d) => d.sunset));
     });
   };
 
@@ -63,9 +63,7 @@ class WeatherCard extends React.Component {
                     <div className="text-center">
                       <div className="temp-div">
                         <p>Min:</p>
-                        <h4
-                          className={`temp ${temColor > 16 ? 'hot' : 'cold'}`}
-                        >
+                        <h4 className={`temp cold`}>
                           {Math.round(data.temp.min)} °C
                         </h4>
                       </div>
@@ -73,12 +71,12 @@ class WeatherCard extends React.Component {
                       <div className="temp-div">
                         <p>Max:</p>
                         <h4
-                          className={`temp ${temColor > 16 ? 'hot' : 'cold'}`}
+                          className={`temp ${temColor >= 10 ? 'hot' : 'cold'}`}
                         >
                           {Math.round(data.temp.max)} °C
                         </h4>
                       </div>
-                      <div className="temp-div">
+                      {/* <div className="temp-div">
                         <img src={sunrise} alt="sunrise" />
                         <h5 className="">
                           {moment(data.sunrise * 1000).format('HH:MM')}
@@ -89,7 +87,7 @@ class WeatherCard extends React.Component {
                         <h5 className="">
                           {moment(data.sunset * 1000).format('HH:MM')}
                         </h5>
-                      </div>
+                      </div> */}
                     </div>
                   </CardBody>
                 </Card>
