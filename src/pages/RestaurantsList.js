@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { listRestaurants } from '../store/actions';
 
 import { Form } from 'react-bootstrap';
 
 function RestaurantsList({ restaurantsList, userInfo }) {
   const dispatch = useDispatch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   let temp = [];
   let [list, setList] = useState(restaurantsList);
 
@@ -14,19 +15,21 @@ function RestaurantsList({ restaurantsList, userInfo }) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (restaurantsList.restaurants.length > 0) {
+    if (restaurantsList.restaurants) {
       if (!userInfo.isAdmin) {
         restaurantsList.restaurants.map((item) => {
           if (userInfo._id === item.manager._id) {
             temp.push(item);
           }
+          return 0
         });
       } else {
-        temp = restaurantsList.restaurants;
+        const newLocal = restaurantsList.restaurants;
+        temp.push(newLocal);
       }
     }
     setList({ ...restaurantsList, restaurants: temp });
-  }, [restaurantsList]);
+  }, [restaurantsList, temp, userInfo._id, userInfo.isAdmin]);
 
   const { error, loading, restaurants } = list;
 
